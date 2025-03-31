@@ -1,0 +1,43 @@
+% **************************** PACKAGE SETUP *******************************
+\usepackage[ngerman]{babel}          % Lokalisierung von Typographie, Silbentrennung, etc.
+
+%\usepackage{ucs}                     % Erweiterte Unterstützung von UTF-8-Kodierung
+\usepackage[utf8]{inputenc}       % vor 2021 hilfreiche Unterstützung von UTF-8 in Eingabe-Dateien
+                                     % nicht mehr kompatibel mit Texlive 2022
+\usepackage[T1]{fontenc}             % Zeichensatzkodierung von LaTeX (Cork-Kodierung)
+\usepackage{helvet,courier,mathptmx} % Verwendete Schriftarten
+
+\usepackage[headsepline, plainheadsepline, plainfootsepline] {scrlayer-scrpage}
+
+\usepackage{amsmath}                 % Mathematische Infrastruktur für LaTeX der AMS
+\usepackage{amsfonts}                % Mathematische Schriftarten
+\usepackage{amssymb}                 % Mathematische Symbole
+\usepackage{amsthm}                  % Erweiterung der Theorem-Umgebungen
+\usepackage[]{units}					 % für \unit-Befehl
+%\usepackage[amssymb]{siunits}		 % für SI-Einheiten (amssymb definiert den Befehl \square des amssymb Packages um. Ist dies nicht gewünscht kann die Option squaren verwendet werden. Dann muss für die SI-Einheiten \squaren anstatt \square verwendet werden.)
+
+%\usepackage{fancyhdr}                % Erweiterte Konfiguration von Kopf/Fußzeile
+\usepackage{hyperref}                % Querverweise, Hyperlink, pdf-Konfiguration, etc.
+
+\usepackage{float}                   % Selbstdefinierte Floating-Umbgebungen
+\usepackage{tabularx}                % Tabellen mit einstellbarer Spaltenbreite
+\usepackage[labelfont=bf]{caption}   % Anpassen der Abbildungs- und Tabellenbeschriftungen
+
+\usepackage{algpseudocode}           % Algorithmen als Pseudocode (basiert auf algorithmicx)
+\usepackage{listings}                % Quellcode-Satz (z.B. mit Syntax-Hervorhebung)
+
+\usepackage[pdftex,
+%draft							%Figures werden nur als Platzhalter eingeblendet
+]{graphicx}						% Erweiterte Unterstützung von Graphiken
+\usepackage{textpos}                 % Beliebig platzierte Textboxen
+\usepackage{xcolor}                  % TeX-Engine-unabhängige Definition von Farben
+\usepackage[printonlyused]{acronym}
+
+
+\usepackage{pdfpages}
+
+\usepackage[backend=biber,style=ieee,natbib=true]{biblatex} 
+%\usepackage[numbers]{natbib}         % Weiter Optionen für die Bibliographie
+\usepackage{todonotes}
+\usepackage{tabulary}
+\usepackage{IEEEtrantools}

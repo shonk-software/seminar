@@ -1,0 +1,57 @@
+\begin{titlepage}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% -*- Mode: Latex -*- %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% 
+%% pa_ba_titelblatt.tex 
+%% 
+%% Copyright (C) 2008 Alexander Sprack / Claudia Holz
+%% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  \definecolor{fh_grau}{gray}{0.752941}
+  \begin{textblock}{6.5}(-1.5,-3)
+    \begin{color}{fh_grau}
+      \rule{6.8cm}{33cm}    
+    \end{color}
+  \end{textblock}
+  \begin{textblock}{6.5}(-1.2,-0.7)
+%  \includegraphics[width=3.8cm]{my-fh-logo}% selbst basteln, falls gewünscht! 
+                                            % Das offizielle Logo ist nicht
+                                            % gestattet!! Bitte BEACHTEN!!!
+  \end{textblock}
+  \begin{textblock}{6.5}(-1.3,1)
+    {\large \textsf{\subject}}            
+  \end{textblock}
+
+  \begin{textblock}{7}(4.1,2)
+    {\noindent \huge
+      \textsf{\textbf{\titel \\[0.3cm] 
+          \Large \subtitel \\[0.05cm]}} }
+  \end{textblock}
+
+
+  \begin{textblock}{6}(4.1,6.5)\noindent
+    \textsf{An der \institution \\
+    im Fachbereich \faculty \\
+    Studiengang \studycourse \\
+    erstellte \subject \\
+    \ifdefined\degree%
+      \if\degree\empty%
+      \else%
+          zur Erlangung des akademischen Grades\\
+          \degree
+      \fi
+    \else%
+    \fi}
+  \end{textblock}
+
+  \begin{textblock}{6.5}(-0.9,9.8)
+    \noindent
+    \textsf{von \\
+     \author \\
+      geb.\ am \dateOfBirth  \\
+      Matr.-Nr. \matrNumber \\[0.7cm]
+      Betreuer: \supervisor \\[0.5cm]
+      \toponym, \today}    
+  \end{textblock}
+
+\end{titlepage}

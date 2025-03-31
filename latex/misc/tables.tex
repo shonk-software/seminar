@@ -1,0 +1,34 @@
+% *************************** TABLE OF CONTENTS *******************************
+% ************************* (Inhaltsverzeichnis) ******************************
+% Die Auskommentierte Zeile fügt das Inhaltsverzeichnis zum Inhaltsverzeichnis hinzu. Diese Verhalten kann auch über das Paket tocbibind erreicht werden. Allerdings funktioniert das Paket nicht für das Pseudocodeverzeichnis, aus diesem Grund werden die Einträge "manuell" hinzugefügt.
+
+%\phantomsection\addcontentsline{toc}{chapter}{\numberline{}\contentsname}
+{
+\baselineskip=15pt % Schriftlinien-Abstand 15 pt (nur beim Inhaltsverzeichnis)
+\tableofcontents   % Inhaltsverzeichnis einfügen
+}
+{
+\baselineskip=22pt % Schriftlinien-Abstand 22 pt (bei allen anderen Verzeichnissen)
+
+% **************************** LIST OF FIGURES ********************************
+% ************************ (Abbildungsverzeichnis) ****************************
+\clearpage\phantomsection
+%\addcontentsline{toc}{chapter}{\numberline{}\listfigurename}
+
+\listoffigures % Abbildungsverzeichnis einfügen
+
+% **************************** LIST OF TABLES *********************************
+%\clearpage\phantomsection\addcontentsline{toc}{chapter}{\numberline{}\listtablename}
+
+%\listoftables % Tabellenverzeichnis einfügen
+
+% ************************** LIST OF PSEUDOCODE *******************************
+%\clearpage\phantomsection\addcontentsline{toc}{chapter}{\numberline{}\listofpseudocodename}
+
+%\listofpseudocode % Pseudocodeverzeichnis einfügen
+
+% *************************** LIST OF LISTINGS ********************************
+%\clearpage\phantomsection\addcontentsline{toc}{chapter}{\numberline{}\lstlistlistingname}
+
+%\lstlistoflistings % Quellcodeverzeichnis einfügen
+}

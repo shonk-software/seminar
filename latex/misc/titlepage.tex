@@ -1,0 +1,65 @@
+% 
+%% *** Titelseite ***
+%
+\begin{titlepage}
+	\vspace*{-3.0cm}
+	%Logo international
+	%\hspace*{ 9.30cm}\includegraphics[scale=0.93]{../ostfalia/LSVorlagejpg_klein_int.jpg}\\
+	%Logo deutsch
+	%\hspace*{10.20cm}\includegraphics[scale=0.60]{../ostfalia/Ostfalia_LS_RGB_klein.jpg}\\
+	\hspace*{ 6.90cm}\includegraphics[scale=0.8]{ostfalia/Ostfalia_LS_RGB_klein.jpg}\\
+	%Logo ohne Schrift
+	%\hspace*{15.00cm}\includegraphics[scale=0.60]{../ostfalia/Ostfalia_L_RGB_klein.jpg}\\
+	%\hspace*{14.30cm}\includegraphics[scale=0.93]{../ostfalia/Ostfalia_L_RGB_klein.jpg}\\
+	\hspace*{-1.00cm}\includegraphics[scale=1.1]{ostfalia/Reiter_Wolfen_RGB_174mm.jpg}\\
+	
+	\hspace*{-0.5cm}{\Large\textsf{Fakultät \faculty}}\\
+	
+	\hrulefill\\
+	
+	%-------------------------------------------------------------------------------
+	\noindent{\Large\textsf{\studenteins, \matrNumbereins\\}}
+	\ifdefined\studentzwei%
+	\if\studentzwei\empty
+	\else
+	{\Large\textsf{\studentzwei, \matrNumberzwei\\}}
+	\fi
+	
+	
+	\vspace{2em}
+	\textbf{
+	\textsf{\huge\titel \\[0.3ex]}}
+	\textsf{\hspace*{0.5cm}\large \subtitel \\[0.05cm]}
+	
+	\vspace{2em}
+	\begin{center}
+	\ifdefined\graduation%
+	\if\graduation\empty%
+	\else%
+	\textsf{Abschlussarbeit zur Erlangung des akademischen Grades}\\[0.5cm]
+	\textsf{\graduation} \textsf{im Studiengang Informatik}\\[0.5cm]
+	\textsf{an der \institution}\\[0.5cm]
+	\textsf{\subinstitution}
+	\fi
+	\end{center}
+	
+	\vspace*{\fill}
+
+ 	\enlargethispage{1\baselineskip}
+	\hrulefill\\
+	\begin{center}
+		\textsf{Betreuer: \\  \supervisor}
+	\end{center}
+	
+	\vspace*{\fill}
+	
+	%-------------------------------------------------------------------------------
+	
+	\enlargethispage{4\baselineskip}
+	\begin{minipage}[b]{0mm}
+		\raisebox{24mm}{\hspace*{-1.00cm}\includegraphics[scale=1.1]{ostfalia/Reiter_szsudwob_RGB_174mm.jpg}}
+	\end{minipage}
+	
+	%*******************************************************************************
+	
+\end{titlepage}
