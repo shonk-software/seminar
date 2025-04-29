@@ -1,28 +1,24 @@
 use std::os::raw::{c_double, c_int};
 use std::slice;
 
-/// Type alias for a comparator function pointer
-type Comparator = extern "C" fn(a: c_double, b: c_double) -> c_int;
-
 #[unsafe(no_mangle)]
 pub extern "C" fn sum(array_ptr: *mut f64, length: usize) -> f64 {
-    let arr = unsafe {
-        slice::from_raw_parts(array_ptr, length)
-    };
+    let arr = unsafe { slice::from_raw_parts(array_ptr, length) };
 
     let mut sum = 0.0;
     for &value in arr.iter() {
         sum += value;
     }
-    
+
     sum
 }
 
+/// Type alias for a comparator function pointer
+type Comparator = extern "C" fn(a: c_double, b: c_double) -> c_int;
+
 #[unsafe(no_mangle)]
 pub extern "C" fn quicksort(array_ptr: *mut c_double, length: usize, cmp: Comparator) {
-    let arr = unsafe {
-        slice::from_raw_parts_mut(array_ptr, length)
-    };
+    let arr = unsafe { slice::from_raw_parts_mut(array_ptr, length) };
 
     quicksort_recursive(arr, &cmp);
 }
