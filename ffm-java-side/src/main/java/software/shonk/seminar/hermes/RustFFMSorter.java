@@ -52,6 +52,7 @@ public class RustFFMSorter {
             for (int i = 0; i < values.length; i++) {
                 System.out.print(arraySegment.getAtIndex(ValueLayout.JAVA_DOUBLE, i) + " ");
             }
+            System.out.println();
         }
     }
 
