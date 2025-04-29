@@ -2,17 +2,29 @@ package software.shonk.seminar.hermes;
 
 import java.lang.foreign.*;
 import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
 import java.lang.invoke.MethodType;
 
 public class RustFFMSorter {
     static {
-        System.loadLibrary("your_rust_library_name"); // Without 'lib' or extension
+        Linker linker = Linker.nativeLinker();
+
+        SymbolLookup lib = SymbolLookup.libraryLookup("../libquicksort/target/release/libquicksort.so", Arena.global()); // Loads the Rust library
+
+        quicksort = linker.downcallHandle(
+                lib.find("sum").orElseThrow(),
+                FunctionDescriptor.of(
+                        ValueLayout.JAVA_DOUBLE,
+                        ValueLayout.ADDRESS,
+                        ValueLayout.JAVA_LONG
+                )
+        );
     }
 
-    static MethodHandle
+    static MethodHandle quicksort;
 
     public static void main(String[] args) throws Throwable {
-        double[] values = {3.1, 2.4, 5.6, 1.9};
+        double[] values = {1.0, 2.0, 3.0, 4.0, 59.0};
 
         try (Arena arena = Arena.ofConfined()) {
             MemorySegment arraySegment = arena.allocate(ValueLayout.JAVA_DOUBLE, values.length);
@@ -20,35 +32,26 @@ public class RustFFMSorter {
                 arraySegment.setAtIndex(ValueLayout.JAVA_DOUBLE, i, values[i]);
             }
 
-            Linker linker = Linker.nativeLinker();
-
-            SymbolLookup lib = SymbolLookup.libraryLookup("/* path/to/your/FileName.dylib */", Arena.global()); // Loads the Rust library
-
-            yourMethodName = linker.downcallHandle(
-                    lib.find("/* function_name */").orElseThrow(), // Replace with the Rust function name
-                    FunctionDescriptor.of(
-                            ValueLayout.JAVA_INT,                     // Match Java's return type to Rust's return type
-                            ValueLayout.JAVA_INT,                     // Match Java's first parameter type to Rust's first parameter type
-                            ValueLayout.JAVA_INT                      // Match Java's second parameter type to Rust's second parameter type
-                    )
-            );
 
 
 
             // Define comparator function in Java
-            MemorySegment comparatorFn = linker.upcallStub(
-                    MethodHandles.lookup().findStatic(QuicksortFFM.class, "compareDoubles",
+/*            MemorySegment comparatorFn = linker.upcallStub(
+                    MethodHandles.lookup().findStatic(RustFFMSorter.class, "compareDoubles",
                             MethodType.methodType(int.class, double.class, double.class)),
                     FunctionDescriptor.of(ValueLayout.JAVA_INT, ValueLayout.JAVA_DOUBLE, ValueLayout.JAVA_DOUBLE),
                     arena
-            );
+            );*/
 
-            quicksortHandle.invoke(arraySegment, (long) values.length, comparatorFn);
+            //quicksort.invoke(arraySegment, (long) values.length, comparatorFn);
+            // Karsten
+            double sum = (double) quicksort.invokeExact(arraySegment, (long) values.length);
+            System.out.println("Sum: " + sum);
 
             // Read back and print sorted values
-            for (int i = 0; i < values.length; i++) {
+            /*for (int i = 0; i < values.length; i++) {
                 System.out.print(arraySegment.getAtIndex(ValueLayout.JAVA_DOUBLE, i) + " ");
-            }
+            }*/
         }
     }
 

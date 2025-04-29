@@ -16,6 +16,26 @@
           <target>24</target>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <mainClass>software.shonk.seminar.hermes.RustFFMSorter</mainClass>
+          <arguments></arguments>
+          <systemProperties>
+            <systemProperty>
+              <key>java.library.path</key>
+              <value>${project.basedir}/target/native</value> <!-- Adjust if needed -->
+            </systemProperty>
+          </systemProperties>
+          <environmentVariables>
+            <JAVA_TOOL_OPTIONS>--enable-native-access=ALL-UNNAMED</JAVA_TOOL_OPTIONS>
+          </environmentVariables>
+          <commandlineArgs></commandlineArgs>
+        </configuration>
+      </plugin>
+
     </plugins>
   </build>
 </project>
