@@ -1,7 +1,5 @@
 package software.shonk.seminar.hermes;
 
-import com.sun.jdi.Value;
-
 import java.lang.foreign.*;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
@@ -49,9 +47,6 @@ public class RustFFMSorter {
 
 
             quicksort.invoke(arraySegment, (long) values.length, comparatorFn);
-            // Karsten
-//            double sum = (double) quicksort.invokeExact(arraySegment, (long) values.length);
-//            System.out.println("Sum: " + sum);
 
             // Read back and print sorted values
             for (int i = 0; i < values.length; i++) {
