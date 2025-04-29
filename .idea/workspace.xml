@@ -12,6 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustFFMSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustFFMSorter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,7 +122,7 @@
       <option name="presentableId" value="Default" />
       <updated>1745921209779</updated>
       <workItem from="1745921211007" duration="182000" />
-      <workItem from="1745921404297" duration="2993000" />
+      <workItem from="1745921404297" duration="3854000" />
     </task>
     <servers />
   </component>
