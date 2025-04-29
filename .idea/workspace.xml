@@ -29,6 +29,9 @@
   <component name="MacroExpansionManager">
     <option name="directoryName" value="e4ijx7xn" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 4
 }</component>
@@ -121,7 +124,7 @@
       <option name="presentableId" value="Default" />
       <updated>1745921209779</updated>
       <workItem from="1745921211007" duration="182000" />
-      <workItem from="1745921404297" duration="7218000" />
+      <workItem from="1745921404297" duration="8807000" />
     </task>
     <servers />
   </component>
