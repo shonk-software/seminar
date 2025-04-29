@@ -5,7 +5,10 @@ To run the example you will need the following:
 - A working Rust installation 
 - A working Java 24 JDK
 
-You can simply run `build-and-run.sh` in the project root
+You can simply run `build-and-run.sh` in the project root:
+```bash
+./build-and-run.sh
+```
 
 Alternatively, you can do the following steps manually:
 
