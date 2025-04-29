@@ -9,7 +9,14 @@ public class RustFFMSorter {
     static {
         Linker linker = Linker.nativeLinker();
 
-        SymbolLookup lib = SymbolLookup.libraryLookup("../libquicksort/target/release/libquicksort.so", Arena.global()); // Loads the Rust library
+        SymbolLookup lib;
+        if (System.getProperty("os.name").toLowerCase().contains("linux")) {
+            lib = SymbolLookup.libraryLookup("../libquicksort/target/release/libquicksort.so", Arena.global());
+        } else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+            lib = SymbolLookup.libraryLookup("../libquicksort/target/release/libquicksort.dylib", Arena.global());
+        } else {
+            throw new UnsupportedOperationException("Unsupported OS");
+        }
 
         quicksort = linker.downcallHandle(
                 lib.find("sum").orElseThrow(),
