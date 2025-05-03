@@ -21,9 +21,9 @@ public class RustFFMSorter {
 
             SymbolLookup lib;
             if (System.getProperty("os.name").toLowerCase().contains("linux")) {
-                lib = SymbolLookup.libraryLookup("../libquicksort/target/release/libquicksort.so", Arena.global());
+                lib = SymbolLookup.libraryLookup("../libquicksort/target/release/libffmexample.so", Arena.global());
             } else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
-                lib = SymbolLookup.libraryLookup("../libquicksort/target/release/libquicksort.dylib", Arena.global());
+                lib = SymbolLookup.libraryLookup("../libquicksort/target/release/libffmexample.dylib", Arena.global());
             } else {
                 throw new UnsupportedOperationException("Unsupported OS");
             }

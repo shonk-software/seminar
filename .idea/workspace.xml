@@ -11,7 +11,14 @@
     </cargoProject>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="Replace custom string reading with memorysegment built in" />
+    <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="Update maven pom to allow choosing the example to run">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-and-run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build-and-run.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustFFMSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustFFMSorter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustWeatherCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustWeatherCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libquicksort/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/libquicksort/Cargo.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libquicksort/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/libquicksort/Cargo.toml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -146,7 +153,7 @@
       <updated>1745921209779</updated>
       <workItem from="1745921211007" duration="182000" />
       <workItem from="1745921404297" duration="8807000" />
-      <workItem from="1746289293368" duration="5693000" />
+      <workItem from="1746289293368" duration="6123000" />
     </task>
     <task id="LOCAL-00001" summary="Add Structured memory example">
       <option name="closed" value="true" />
@@ -172,7 +179,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746294553524</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Update maven pom to allow choosing the example to run">
+      <option name="closed" value="true" />
+      <created>1746295195051</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1746295195051</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -193,6 +208,7 @@
     <MESSAGE value="Add Structured memory example" />
     <MESSAGE value="Add correct dylib loading on mac" />
     <MESSAGE value="Replace custom string reading with memorysegment built in" />
-    <option name="LAST_COMMIT_MESSAGE" value="Replace custom string reading with memorysegment built in" />
+    <MESSAGE value="Update maven pom to allow choosing the example to run" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update maven pom to allow choosing the example to run" />
   </component>
 </project>
