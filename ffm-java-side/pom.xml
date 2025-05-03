@@ -21,7 +21,7 @@
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.1.0</version>
         <configuration>
-          <mainClass>software.shonk.seminar.hermes.RustFFMSorter</mainClass>
+          <mainClass>software.shonk.seminar.hermes.RustWeatherCalculator</mainClass>
           <arguments></arguments>
           <systemProperties>
             <systemProperty>

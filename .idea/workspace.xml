@@ -12,7 +12,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustWeatherCalculator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ffm-java-side/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ffm-java-side/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustFFMSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustFFMSorter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/libquicksort/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/libquicksort/src/lib.rs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +25,13 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="RsBuildProfile:test" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -39,33 +51,47 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.RustFFMSorter.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHELLCHECK.PATH&quot;: &quot;/home/flamion/.local/share/JetBrains/IntelliJIdea2024.3/Shell Script/shellcheck&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/flamion/dev/seminar&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;,
-    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
-    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.RustFFMSorter.executor": "Run",
+    "Application.RustWeatherCalculator.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHELLCHECK.PATH": "/home/flamion/.local/share/JetBrains/IntelliJIdea2024.3/Shell Script/shellcheck",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "/home/flamion/dev/seminar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
+    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
+    "org.rust.first.attach.projects": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Application.RustFFMSorter">
+}]]></component>
+  <component name="RunManager" selected="Application.RustWeatherCalculator">
     <configuration name="RustFFMSorter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="software.shonk.seminar.hermes.RustFFMSorter" />
+      <module name="seminar" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="software.shonk.seminar.hermes.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RustWeatherCalculator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="software.shonk.seminar.hermes.RustWeatherCalculator" />
       <module name="seminar" />
       <extension name="coverage">
         <pattern>
@@ -96,11 +122,13 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="Application.RustWeatherCalculator" />
       <item itemvalue="Application.RustFFMSorter" />
       <item itemvalue="Cargo.Test quicksort" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.RustWeatherCalculator" />
         <item itemvalue="Application.RustFFMSorter" />
       </list>
     </recent_temporary>
@@ -125,6 +153,7 @@
       <updated>1745921209779</updated>
       <workItem from="1745921211007" duration="182000" />
       <workItem from="1745921404297" duration="8807000" />
+      <workItem from="1746289293368" duration="4260000" />
     </task>
     <servers />
   </component>
