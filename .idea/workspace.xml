@@ -11,7 +11,7 @@
     </cargoProject>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="Add correct dylib loading on mac" />
+    <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="Replace custom string reading with memorysegment built in" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -146,7 +146,7 @@
       <updated>1745921209779</updated>
       <workItem from="1745921211007" duration="182000" />
       <workItem from="1745921404297" duration="8807000" />
-      <workItem from="1746289293368" duration="5089000" />
+      <workItem from="1746289293368" duration="5693000" />
     </task>
     <task id="LOCAL-00001" summary="Add Structured memory example">
       <option name="closed" value="true" />
@@ -164,7 +164,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746293950410</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Replace custom string reading with memorysegment built in">
+      <option name="closed" value="true" />
+      <created>1746294553524</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1746294553524</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,6 +192,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Add Structured memory example" />
     <MESSAGE value="Add correct dylib loading on mac" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add correct dylib loading on mac" />
+    <MESSAGE value="Replace custom string reading with memorysegment built in" />
+    <option name="LAST_COMMIT_MESSAGE" value="Replace custom string reading with memorysegment built in" />
   </component>
 </project>

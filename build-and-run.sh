@@ -6,4 +6,5 @@ cd libquicksort
 cargo build --release
 
 cd ../ffm-java-side
-mvn compile exec:java
+mvn compile exec:java@weather
+mvn compile exec:java@sorter

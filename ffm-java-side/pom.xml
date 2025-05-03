@@ -20,21 +20,46 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>3.1.0</version>
-        <configuration>
-          <mainClass>software.shonk.seminar.hermes.RustWeatherCalculator</mainClass>
-          <arguments></arguments>
-          <systemProperties>
-            <systemProperty>
-              <key>java.library.path</key>
-              <value>${project.basedir}/target/native</value> <!-- Adjust if needed -->
-            </systemProperty>
-          </systemProperties>
-          <environmentVariables>
-            <JAVA_TOOL_OPTIONS>--enable-native-access=ALL-UNNAMED</JAVA_TOOL_OPTIONS>
-          </environmentVariables>
-          <commandlineArgs></commandlineArgs>
-        </configuration>
+        <executions>
+          <execution>
+            <id>weather</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>software.shonk.seminar.hermes.RustWeatherCalculator</mainClass>
+              <systemProperties>
+                <systemProperty>
+                  <key>java.library.path</key>
+                  <value>${project.basedir}/target/native</value>
+                </systemProperty>
+              </systemProperties>
+              <environmentVariables>
+                <JAVA_TOOL_OPTIONS>--enable-native-access=ALL-UNNAMED</JAVA_TOOL_OPTIONS>
+              </environmentVariables>
+            </configuration>
+          </execution>
+          <execution>
+            <id>sorter</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>software.shonk.seminar.hermes.RustFFMSorter</mainClass>
+              <systemProperties>
+                <systemProperty>
+                  <key>java.library.path</key>
+                  <value>${project.basedir}/target/native</value>
+                </systemProperty>
+              </systemProperties>
+              <environmentVariables>
+                <JAVA_TOOL_OPTIONS>--enable-native-access=ALL-UNNAMED</JAVA_TOOL_OPTIONS>
+              </environmentVariables>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
+
 
     </plugins>
   </build>
