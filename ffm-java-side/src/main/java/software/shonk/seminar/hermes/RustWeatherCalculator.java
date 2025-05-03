@@ -3,7 +3,6 @@ package software.shonk.seminar.hermes;
 import java.lang.foreign.*;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
-import java.nio.charset.StandardCharsets;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class RustWeatherCalculator {
