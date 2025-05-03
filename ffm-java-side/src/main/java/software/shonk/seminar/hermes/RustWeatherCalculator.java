@@ -26,7 +26,14 @@ public class RustWeatherCalculator {
 
     public static void main(String[] args) throws Throwable {
         Linker linker = Linker.nativeLinker();
-        SymbolLookup lib = SymbolLookup.libraryLookup("../libquicksort/target/release/libquicksort.so", Arena.global());
+        SymbolLookup lib;
+        if (System.getProperty("os.name").toLowerCase().contains("linux")) {
+            lib = SymbolLookup.libraryLookup("../libquicksort/target/release/libquicksort.so", Arena.global());
+        } else if (System.getProperty("os.name").toLowerCase().contains("mac")) {
+            lib = SymbolLookup.libraryLookup("../libquicksort/target/release/libquicksort.dylib", Arena.global());
+        } else {
+            throw new UnsupportedOperationException("Unsupported OS");
+        }
 
         MethodHandle findWarmestRegion = linker.downcallHandle(
                 lib.find("find_warmest_region").orElseThrow(),

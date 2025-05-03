@@ -11,14 +11,7 @@
     </cargoProject>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustWeatherCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/material_theme_project_new.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ffm-java-side/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ffm-java-side/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustFFMSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustFFMSorter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libquicksort/src/lib.rs" beforeDir="false" afterPath="$PROJECT_DIR$/libquicksort/src/lib.rs" afterDir="false" />
-    </list>
+    <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="Add Structured memory example" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -153,8 +146,17 @@
       <updated>1745921209779</updated>
       <workItem from="1745921211007" duration="182000" />
       <workItem from="1745921404297" duration="8807000" />
-      <workItem from="1746289293368" duration="4260000" />
+      <workItem from="1746289293368" duration="4603000" />
     </task>
+    <task id="LOCAL-00001" summary="Add Structured memory example">
+      <option name="closed" value="true" />
+      <created>1746293896271</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1746293896271</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -170,5 +172,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add Structured memory example" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Structured memory example" />
   </component>
 </project>
