@@ -78,7 +78,8 @@ public class RustWeatherCalculator {
             VarHandle cityNameHandle = REGION_LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("city_name"));
 
             // print the city name
-            String cityName = readCString((MemorySegment) cityNameHandle.get(warmestRegionReinterpreted, 0L));
+            MemorySegment cityNameSegment = (MemorySegment) cityNameHandle.get(warmestRegionReinterpreted, 0L);
+            String cityName = cityNameSegment.reinterpret(Long.MAX_VALUE).getString(0);
             System.out.println("Warmest region: " + cityName);
         }
     }
@@ -101,16 +102,5 @@ public class RustWeatherCalculator {
             windHandle.set(dp, 0L, wind);
         }
         return dpArray;
-    }
-
-    static String readCString(MemorySegment segment) {
-        MemorySegment cstr = segment.reinterpret(Long.MAX_VALUE);
-        long len = 0;
-        while (cstr.get(ValueLayout.JAVA_BYTE, len) != 0) len++;
-        byte[] bytes = new byte[(int) len];
-        for (int i = 0; i < len; i++) {
-            bytes[i] = cstr.get(ValueLayout.JAVA_BYTE, i);
-        }
-        return new String(bytes, StandardCharsets.UTF_8);
     }
 }
