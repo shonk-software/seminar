@@ -4,14 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="CargoProjects">
-    <cargoProject FILE="$PROJECT_DIR$/libquicksort/Cargo.toml">
-      <package file="$PROJECT_DIR$/libquicksort">
+    <cargoProject FILE="$PROJECT_DIR$/libffmexample/Cargo.toml">
+      <package file="$PROJECT_DIR$/libffmexample">
         <enabledFeature name="default" />
       </package>
     </cargoProject>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="Remove unused testing function" />
+    <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="Rename rust library folder">
+      <change beforePath="$PROJECT_DIR$/.idea/seminar.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/seminar.iml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -147,7 +149,7 @@
       <workItem from="1745921211007" duration="182000" />
       <workItem from="1745921404297" duration="8807000" />
       <workItem from="1746289293368" duration="10119000" />
-      <workItem from="1746362299147" duration="759000" />
+      <workItem from="1746362299147" duration="1087000" />
     </task>
     <task id="LOCAL-00001" summary="Add Structured memory example">
       <option name="closed" value="true" />
@@ -205,7 +207,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746362701616</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Rename rust library folder">
+      <option name="closed" value="true" />
+      <created>1746363189969</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1746363189969</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +240,7 @@
     <MESSAGE value="Update rust lib name, add comments / echo prints to build and run" />
     <MESSAGE value="Remove unused import" />
     <MESSAGE value="Remove unused testing function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove unused testing function" />
+    <MESSAGE value="Rename rust library folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename rust library folder" />
   </component>
 </project>

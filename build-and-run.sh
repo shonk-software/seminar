@@ -5,7 +5,7 @@ echo "Building and running the project..."
 
 echo "Building the Rust library..."
 printf "\n"
-cd libquicksort
+cd libffmexample
 cargo build --release
 
 cd ../ffm-java-side

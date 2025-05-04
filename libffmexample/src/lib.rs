@@ -5,7 +5,7 @@ pub extern "C" fn sum(array_ptr: *mut f64, length: usize) -> f64 {
     let arr = unsafe { slice::from_raw_parts(array_ptr, length) };
 
     let mut sum = 0.0;
-    for &value in arr.iter() {
+    for value in arr {
         sum += value;
     }
 
@@ -19,10 +19,10 @@ type Comparator = extern "C" fn(a: f64, b: f64) -> i32;
 pub extern "C" fn quicksort(array_ptr: *mut f64, length: usize, cmp: Comparator) {
     let arr = unsafe { slice::from_raw_parts_mut(array_ptr, length) };
 
-    quicksort_recursive(arr, &cmp);
+    quicksort_recursive(arr, cmp);
 }
 
-fn quicksort_recursive(arr: &mut [f64], cmp: &Comparator) {
+fn quicksort_recursive(arr: &mut [f64], cmp: Comparator) {
     if arr.len() <= 1 {
         return;
     }
@@ -32,7 +32,7 @@ fn quicksort_recursive(arr: &mut [f64], cmp: &Comparator) {
     quicksort_recursive(&mut arr[pivot_index + 1..], cmp);
 }
 
-fn partition(arr: &mut [f64], cmp: &Comparator) -> usize {
+fn partition(arr: &mut [f64], cmp: Comparator) -> usize {
     let len = arr.len();
     let pivot = arr[len - 1];
     let mut i = 0;
@@ -43,6 +43,7 @@ fn partition(arr: &mut [f64], cmp: &Comparator) -> usize {
         }
     }
     arr.swap(i, len - 1);
+    
     i
 }
 
@@ -71,14 +72,15 @@ pub struct RegionSequence {
     pub regions_len: usize,
 }
 
-unsafe fn average_temperature(region: &Region) -> Option<f32> {
-    if region.data_points.is_null() || region.data_points_len == 0 {
-        return None;
+impl Region {
+    fn average_temperature(&self) -> Option<f32> {
+        if self.data_points.is_null() || self.data_points_len == 0 {
+            return None;
+        }
+
+        let data_points = unsafe { slice::from_raw_parts(self.data_points, self.data_points_len) };
+        Some(data_points.iter().map(|dp| dp.temperature).sum::<f32>() / data_points.len() as f32)
     }
-
-    let slice = unsafe { slice::from_raw_parts(region.data_points, region.data_points_len) };
-
-    Some(slice.iter().map(|dp| dp.temperature).sum::<f32>() / slice.len() as f32)
 }
 
 #[unsafe(no_mangle)]
@@ -87,21 +89,22 @@ pub extern "C" fn find_warmest_region(seq: *const RegionSequence) -> *const Regi
         return std::ptr::null();
     }
 
-    let regions = unsafe {&*seq};
-    if regions.regions.is_null() || regions.regions_len == 0 {
+    let region_sequence = unsafe { &*seq };
+    if region_sequence.regions.is_null() || region_sequence.regions_len == 0 {
         return std::ptr::null();
     }
 
-    let region_slice = unsafe { slice::from_raw_parts(regions.regions, regions.regions_len) };
-    let mut warmest: Option<(&Region, f32)> = None;
+    let regions = unsafe { 
+        slice::from_raw_parts(region_sequence.regions, region_sequence.regions_len) 
+    };
 
-    for region in region_slice {
-        if let Some(avg_temp) = unsafe { average_temperature(region) } {
-            if warmest.is_none() || avg_temp > warmest.unwrap().1 {
-                warmest = Some((region, avg_temp));
-            }
-        }
-    }
-
-    warmest.map_or(std::ptr::null(), |(region, _)| region as *const Region)
+    regions
+        .iter()
+        .filter_map(|region| region.average_temperature().map(|temp| (region, temp)))
+        .max_by(|(_, temp_a), (_, temp_b)| {
+            temp_a
+                .partial_cmp(temp_b)
+                .unwrap_or(std::cmp::Ordering::Equal)
+        })
+        .map_or(std::ptr::null(), |(region, _)| region)
 }
