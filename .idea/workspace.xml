@@ -11,9 +11,7 @@
     </cargoProject>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="Remove unused import">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="Remove unused testing function" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,7 +147,7 @@
       <workItem from="1745921211007" duration="182000" />
       <workItem from="1745921404297" duration="8807000" />
       <workItem from="1746289293368" duration="10119000" />
-      <workItem from="1746362299147" duration="347000" />
+      <workItem from="1746362299147" duration="759000" />
     </task>
     <task id="LOCAL-00001" summary="Add Structured memory example">
       <option name="closed" value="true" />
@@ -199,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746295902233</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Remove unused testing function">
+      <option name="closed" value="true" />
+      <created>1746362701616</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1746362701616</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -223,6 +229,7 @@
     <MESSAGE value="Update maven pom to allow choosing the example to run" />
     <MESSAGE value="Update rust lib name, add comments / echo prints to build and run" />
     <MESSAGE value="Remove unused import" />
-    <option name="LAST_COMMIT_MESSAGE" value="Remove unused import" />
+    <MESSAGE value="Remove unused testing function" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove unused testing function" />
   </component>
 </project>

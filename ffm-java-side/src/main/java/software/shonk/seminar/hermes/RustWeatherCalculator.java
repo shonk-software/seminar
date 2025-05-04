@@ -117,7 +117,7 @@ public class RustWeatherCalculator {
 
     private static String getWarmestRegion(Region... regions) throws Throwable {
         Linker linker = Linker.nativeLinker();
-        SymbolLookup lib = lookupLibrary("../libquicksort/target/release/libffmexample");
+        SymbolLookup lib = lookupLibrary("../libffmexample/target/release/libffmexample");
 
         MethodHandle findWarmestRegion = linker.downcallHandle(
                 lib.find("find_warmest_region").orElseThrow(),
