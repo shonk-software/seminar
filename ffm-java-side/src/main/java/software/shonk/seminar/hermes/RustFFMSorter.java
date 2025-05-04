@@ -60,12 +60,4 @@ public class RustFFMSorter {
     public static int compareDoubles(double a, double b) {
         return Double.compare(a, b);
     }
-
-    public void test() {
-        try (Arena arena = Arena.ofConfined()) {
-            MemorySegment seg = arena.allocate(4);           // allocate 4 bytes off-heap
-            seg.set(ValueLayout.JAVA_INT, 0, 42);            // write an int value
-            int value = seg.get(ValueLayout.JAVA_INT, 0);    // read the int back
-        }
-    }
 }

@@ -11,13 +11,8 @@
     </cargoProject>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="Update maven pom to allow choosing the example to run">
+    <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="Remove unused import">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build-and-run.sh" beforeDir="false" afterPath="$PROJECT_DIR$/build-and-run.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustFFMSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustFFMSorter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustWeatherCalculator.java" beforeDir="false" afterPath="$PROJECT_DIR$/ffm-java-side/src/main/java/software/shonk/seminar/hermes/RustWeatherCalculator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libquicksort/Cargo.lock" beforeDir="false" afterPath="$PROJECT_DIR$/libquicksort/Cargo.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/libquicksort/Cargo.toml" beforeDir="false" afterPath="$PROJECT_DIR$/libquicksort/Cargo.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,31 +46,31 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.RustFFMSorter.executor": "Run",
-    "Application.RustWeatherCalculator.executor": "Run",
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHELLCHECK.PATH": "/home/flamion/.local/share/JetBrains/IntelliJIdea2024.3/Shell Script/shellcheck",
-    "git-widget-placeholder": "main",
-    "junie.onboarding.icon.badge.shown": "true",
-    "last_opened_file_path": "/home/flamion/dev/seminar",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
-    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
-    "org.rust.first.attach.projects": "true",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.RustFFMSorter.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RustWeatherCalculator.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHELLCHECK.PATH&quot;: &quot;/home/flamion/.local/share/JetBrains/IntelliJIdea2024.3/Shell Script/shellcheck&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/flamion/dev/seminar&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;,
+    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
+    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.RustWeatherCalculator">
     <configuration name="RustFFMSorter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="software.shonk.seminar.hermes.RustFFMSorter" />
@@ -153,7 +148,8 @@
       <updated>1745921209779</updated>
       <workItem from="1745921211007" duration="182000" />
       <workItem from="1745921404297" duration="8807000" />
-      <workItem from="1746289293368" duration="6123000" />
+      <workItem from="1746289293368" duration="10119000" />
+      <workItem from="1746362299147" duration="347000" />
     </task>
     <task id="LOCAL-00001" summary="Add Structured memory example">
       <option name="closed" value="true" />
@@ -187,7 +183,23 @@
       <option name="project" value="LOCAL" />
       <updated>1746295195051</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Update rust lib name, add comments / echo prints to build and run">
+      <option name="closed" value="true" />
+      <created>1746295547587</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1746295547587</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Remove unused import">
+      <option name="closed" value="true" />
+      <created>1746295902233</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1746295902233</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -209,6 +221,8 @@
     <MESSAGE value="Add correct dylib loading on mac" />
     <MESSAGE value="Replace custom string reading with memorysegment built in" />
     <MESSAGE value="Update maven pom to allow choosing the example to run" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update maven pom to allow choosing the example to run" />
+    <MESSAGE value="Update rust lib name, add comments / echo prints to build and run" />
+    <MESSAGE value="Remove unused import" />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove unused import" />
   </component>
 </project>
