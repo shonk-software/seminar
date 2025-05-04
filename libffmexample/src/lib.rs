@@ -12,7 +12,7 @@ pub extern "C" fn sum(array_ptr: *mut f64, length: usize) -> f64 {
     sum
 }
 
-/// Type alias for the java comparator function pointer
+/// Type alias for the Java comparator function pointer
 type Comparator = extern "C" fn(a: f64, b: f64) -> i32;
 
 #[unsafe(no_mangle)]
