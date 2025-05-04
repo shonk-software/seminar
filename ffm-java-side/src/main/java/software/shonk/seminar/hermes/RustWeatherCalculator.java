@@ -34,7 +34,7 @@ public class RustWeatherCalculator {
         static final VarHandle DATA_POINTS_HANDLE = MEMORY_LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("data_points"));
         static final VarHandle DATA_POINTS_LEN_HANDLE = MEMORY_LAYOUT.varHandle(MemoryLayout.PathElement.groupElement("data_points_len"));
 
-        private MemorySegment allocateDatapoints(Arena arena) {
+        public MemorySegment allocateDatapoints(Arena arena) {
             MemorySegment segment = arena.allocate(MemoryLayout.sequenceLayout(
                     this.dataPoints.length,
                     DataPoint.MEMORY_LAYOUT
@@ -52,19 +52,14 @@ public class RustWeatherCalculator {
             return segment;
         }
 
-        public void writeToSegment(MemorySegment segment, MemorySegment dataPointsSegment, MemorySegment cityNameSegment, long offset) {
+        public MemorySegment allocateName(Arena arena) {
+            return arena.allocateFrom(this.cityName);
+        }
+
+        public void writeToSegment(MemorySegment segment, MemorySegment cityNameSegment, MemorySegment dataPointsSegment, long offset) {
             CITY_NAME_HANDLE.set(segment, offset, cityNameSegment);
             DATA_POINTS_HANDLE.set(segment, offset, dataPointsSegment);
             DATA_POINTS_LEN_HANDLE.set(segment, offset, dataPoints.length);
-        }
-
-        public MemorySegment allocateAndWrite(Arena arena) {
-            MemorySegment nameSegment = arena.allocateFrom(this.cityName);
-            MemorySegment datapointSegment = allocateDatapoints(arena);
-            MemorySegment segment = arena.allocate(MEMORY_LAYOUT);
-
-            this.writeToSegment(segment, datapointSegment, nameSegment, 0L);
-            return segment;
         }
     }
 
@@ -86,11 +81,16 @@ public class RustWeatherCalculator {
             MemorySegment arraySegment = arena.allocate(regionsSequenceLayout);
 
             for (int i = 0; i < this.regions.length; i++) {
-                MemorySegment regionSegment = this.regions[i].allocateAndWrite(arena);
-                arraySegment.asSlice(
+                MemorySegment regionSegment = arraySegment.asSlice(
                         i * Region.MEMORY_LAYOUT.byteSize(),
                         Region.MEMORY_LAYOUT.byteSize()
-                ).copyFrom(regionSegment);
+                );
+                Region region = this.regions[i];
+
+                MemorySegment datapointSegment = region.allocateDatapoints(arena);
+                MemorySegment nameSegment = region.allocateName(arena);
+
+                this.regions[i].writeToSegment(regionSegment, nameSegment, datapointSegment, 0L);
             }
 
             return arraySegment;
