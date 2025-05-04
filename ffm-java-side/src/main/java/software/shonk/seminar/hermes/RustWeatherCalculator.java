@@ -3,8 +3,6 @@ package software.shonk.seminar.hermes;
 import java.lang.foreign.*;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.VarHandle;
-import java.util.Arrays;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class RustWeatherCalculator {
     record DataPoint(float temperature, float humidity, float wind_speed) {
