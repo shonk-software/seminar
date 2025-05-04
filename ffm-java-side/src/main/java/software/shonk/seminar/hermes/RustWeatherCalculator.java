@@ -52,19 +52,18 @@ public class RustWeatherCalculator {
             return segment;
         }
 
-        public void writeToSegment(MemorySegment segment, long offset, Arena arena) {
-            // fine to allocate here, because they are both pointers in this struct
-            MemorySegment nameSegment = arena.allocateFrom(this.cityName);
-            MemorySegment datapointSegment = allocateDatapoints(arena);
-
-            CITY_NAME_HANDLE.set(segment, 0L, nameSegment);
-            DATA_POINTS_HANDLE.set(segment, 0L, datapointSegment);
-            DATA_POINTS_LEN_HANDLE.set(segment, 0L, dataPoints.length);
+        public void writeToSegment(MemorySegment segment, MemorySegment dataPointsSegment, MemorySegment cityNameSegment, long offset) {
+            CITY_NAME_HANDLE.set(segment, offset, cityNameSegment);
+            DATA_POINTS_HANDLE.set(segment, offset, dataPointsSegment);
+            DATA_POINTS_LEN_HANDLE.set(segment, offset, dataPoints.length);
         }
 
         public MemorySegment allocateAndWrite(Arena arena) {
+            MemorySegment nameSegment = arena.allocateFrom(this.cityName);
+            MemorySegment datapointSegment = allocateDatapoints(arena);
             MemorySegment segment = arena.allocate(MEMORY_LAYOUT);
-            this.writeToSegment(segment, 0L, arena);
+
+            this.writeToSegment(segment, datapointSegment, nameSegment, 0L);
             return segment;
         }
     }
@@ -97,14 +96,15 @@ public class RustWeatherCalculator {
             return arraySegment;
         }
 
-        public void writeToSegment(MemorySegment segment, long offset, Arena arena) {
-            REGIONS_HANDLE.set(segment, offset, this.allocateRegions(arena));
+        public void writeToSegment(MemorySegment segment, MemorySegment regionsSegment, long offset) {
+            REGIONS_HANDLE.set(segment, offset, regionsSegment);
             REGIONS_LEN_HANDLE.set(segment, offset, this.regions.length);
         }
 
         public MemorySegment writeToMemory(Arena arena) {
+            MemorySegment regionsSegment = allocateRegions(arena);
             MemorySegment segment = arena.allocate(MEMORY_LAYOUT);
-            this.writeToSegment(segment, 0L, arena);
+            this.writeToSegment(segment, regionsSegment, 0L);
             return segment;
         }
     }
@@ -119,9 +119,6 @@ public class RustWeatherCalculator {
         );
 
         try (Arena arena = Arena.ofConfined()) {
-            String[] cities = {"Braunschweig", "Hannover", "Hamburg"};
-            int pointsPerCity = 5;
-
             MemorySegment regionArray = createRegions(arena);
 
             // Call Rust
