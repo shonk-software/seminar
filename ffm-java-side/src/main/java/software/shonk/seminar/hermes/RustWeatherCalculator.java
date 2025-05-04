@@ -110,6 +110,12 @@ public class RustWeatherCalculator {
     }
 
     public static void main(String[] args) throws Throwable {
+        System.out.println(getWarmestRegion(
+                createRegions()
+        ));
+    }
+
+    private static String getWarmestRegion(Region... regions) throws Throwable {
         Linker linker = Linker.nativeLinker();
         SymbolLookup lib = lookupLibrary("../libquicksort/target/release/libffmexample");
 
@@ -119,17 +125,20 @@ public class RustWeatherCalculator {
         );
 
         try (Arena arena = Arena.ofConfined()) {
-            MemorySegment regionArray = createRegions(arena);
+            RegionSequence regionSequence = new RegionSequence(regions);
+
+            MemorySegment regionArray = regionSequence.writeToMemory(arena);
 
             // Call Rust
-            MemorySegment warmestRegion = (MemorySegment) findWarmestRegion.invoke(regionArray);
+            MemorySegment regionSegment = (MemorySegment) findWarmestRegion.invoke(regionArray);
 
-            // Read and print result
-            printWarmestRegion(warmestRegion);
+            MemorySegment warmestRegion = regionSegment.reinterpret(Region.MEMORY_LAYOUT.byteSize());
+            MemorySegment cityNameSegment = (MemorySegment) Region.CITY_NAME_HANDLE.get(warmestRegion, 0L);
+            return cityNameSegment.reinterpret(Long.MAX_VALUE).getString(0);
         }
     }
 
-    private static MemorySegment createRegions(Arena arena) {
+    private static Region[] createRegions() {
         Region oldenburg = new Region("Oldenburg", new DataPoint[]{
                 new DataPoint(50, 10, 10),
                 new DataPoint(10, 10, 10),
@@ -148,22 +157,11 @@ public class RustWeatherCalculator {
                 new DataPoint(10, 10, 10),
         });
 
-        RegionSequence regions = new RegionSequence(
-                new Region[] {
-                        oldenburg,
-                        hannover,
-                        braunschweig,
-                }
-        );
-
-        return regions.writeToMemory(arena);
-    }
-
-    private static void printWarmestRegion(MemorySegment regionSegment) {
-        MemorySegment warmestRegion = regionSegment.reinterpret(Region.MEMORY_LAYOUT.byteSize());
-        MemorySegment cityNameSegment = (MemorySegment) Region.CITY_NAME_HANDLE.get(warmestRegion, 0L);
-        String cityName = cityNameSegment.reinterpret(Long.MAX_VALUE).getString(0);
-        System.out.println("Warmest region: " + cityName);
+        return new Region[] {
+                oldenburg,
+                hannover,
+                braunschweig,
+        };
     }
 
     private static SymbolLookup lookupLibrary(String basePath) {
