@@ -21,5 +21,5 @@ cargo build --release
 ### Compile & Run Java
 in the `ffm-java-side` directory run:
 ```bash
-mvn clean exec:java
+mvn compile exec:java
 ```

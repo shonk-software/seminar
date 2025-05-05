@@ -11,9 +11,7 @@
     </cargoProject>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="Rename rust library folder">
-      <change beforePath="$PROJECT_DIR$/.idea/seminar.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/seminar.iml" afterDir="false" />
-    </list>
+    <list default="true" id="5771ffef-a0c8-4de2-8e4f-6410e7ba7939" name="Changes" comment="Fix clean.sh" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -150,6 +148,7 @@
       <workItem from="1745921404297" duration="8807000" />
       <workItem from="1746289293368" duration="10119000" />
       <workItem from="1746362299147" duration="1087000" />
+      <workItem from="1746432314872" duration="308000" />
     </task>
     <task id="LOCAL-00001" summary="Add Structured memory example">
       <option name="closed" value="true" />
@@ -215,7 +214,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746363189969</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Fix clean.sh">
+      <option name="closed" value="true" />
+      <created>1746432619868</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1746432619868</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,6 +248,7 @@
     <MESSAGE value="Remove unused import" />
     <MESSAGE value="Remove unused testing function" />
     <MESSAGE value="Rename rust library folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rename rust library folder" />
+    <MESSAGE value="Fix clean.sh" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix clean.sh" />
   </component>
 </project>
