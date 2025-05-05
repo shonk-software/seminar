@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-cd libquicksort
+cd libffmexample
 cargo clean
 
 cd ../ffm-java-side
