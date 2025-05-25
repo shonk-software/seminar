@@ -12,6 +12,108 @@ TITLE PAGE
 
 ---
 
+# FFM Technical Aspects introduction here?
+
+
+
+---
+
+# Memory Segments
+
+Provide:
+- A unified type-safe abstraction over on- and off-heap memory
+- Spatial and temporal guarantees
+
+---
+
+# Memory Segments
+
+Wrap:
+- On-heap
+- Off-heap
+- Function pointers
+
+Basically anything pointer
+
+---
+
+# Memory Segments
+## Arena
+- Implementor of `SegmentAllocator`
+- Controls lifecycle of segments
+  - Global / Automatic / Shared / Confined
+
+---
+
+# Memory Segments
+## Arena - Confined
+
+```java
+try (Arena arena = Arena.ofConfined()) {
+    MemorySegment seg = arena.allocate(4);
+    seg.set(ValueLayout.JAVA_INT, 0, 42);
+    int value = seg.get(ValueLayout.JAVA_INT, 0);
+}
+```
+
+---
+
+# Memory Segments
+## Slices & Read-only
+- MemorySegments can be sliced
+- MemorySegments can be made read-only
+
+---
+
+## Memory Segments
+## Slices / Views & Read-only: Code example
+
+```java
+try (Arena a = Arena.ofConfined()) {
+    MemorySegment s  = a.allocate(12);            // 3 ints
+    s.set(ValueLayout.JAVA_INT, 4, 20);           // Middle int, byte offset
+    MemorySegment ro = s.asSlice(4, 4).asReadOnly();   // slice + RO
+    System.out.println(ro.get(ValueLayout.JAVA_INT, 0)); // 20
+    ro.set(ValueLayout.JAVA_INT, 0, 99);  // throws (read-only)
+}
+```
+
+---
+
+# Memory Segments
+## Native interop
+- On-heap segments cannot be passed to native code
+- MemorySegments wrap pointers returned from native code
+<!--   - Zero length  -->
+
+---
+# Memory Segments
+## Native interop - Function pointers
+- Zero-length MemorySegment
+  - Can be passed to native code accepting function pointers
+  - MethodHandle to call
+
+---
+
+# Memory Segments
+## Native interop - Zero-length MemorySegments
+- Have to be reinterpreted
+
+<!-- Example from our demo -->
+```java
+cityNameSegment.reinterpret(Long.MAX_VALUE).getString(0)
+```
+
+---
+
+# Memory Segments - Summary
+- Unified type-safe abstraction over anything pointer-like
+- Spatial and temporal guarantees
+- Ergonomic handling via Arenas
+- Allows slicing and read-only access
+
+---
+
 # Memory Layouts
 <!--
 header: MemoryLayouts
