@@ -24,9 +24,16 @@ Provide:
 - A unified type-safe abstraction over on- and off-heap memory
 - Spatial and temporal guarantees
 
+<!--
+Memory Segments provide a unified, type-safe abstraction over on- and off-heap memory.
+They also provide Spatial and temporal guarantees, which I will explain soon.
+-->
+
 ---
 
 # Memory Segments
+
+Combination of (base) pointer & length
 
 Wrap:
 - On-heap
@@ -34,6 +41,12 @@ Wrap:
 - Function pointers
 
 Basically anything pointer
+
+<!--
+They're fat pointers that wrap on-heap memory, off-heap memory and function pointers.
+That means that they're made up of a base pointer & length, plus some additional metadata like lifetime scope, Thread access control etc.
+They provide spatial safety via the stored length, reads and writes are checked for out of bounds access like arrays.
+-->
 
 ---
 
@@ -43,6 +56,15 @@ Basically anything pointer
 - Controls lifecycle of segments
   - Global / Automatic / Shared / Confined
 
+<!--
+MemorySegments can be allocated by a SegmentAllocator.
+Arena is one of these (basically the main) implementor of the SegmentAllocator interface and controls the lifecycle of MemorySegments allocated within it.
+There are different types of Arenas:
+- Global (which lives as long as the entire application and is accessible from everywhere. Memory allocated within it is never deallocated.)
+- Automatic (which lives as long as it and any MemorySegment allocated inside it is deemed reachable by the Garbage Collector)
+- Shared (simple Arena which can be shared between Threads and closed manually by any Thread)
+- Confined (an Arena that cannot be shared between threads and is usually used in combination with a try-with-resources)
+-->
 ---
 
 # Memory Segments
@@ -55,6 +77,24 @@ try (Arena arena = Arena.ofConfined()) {
     int value = seg.get(ValueLayout.JAVA_INT, 0);
 }
 ```
+
+---
+
+# Memory Segments
+## Arena - Shared
+
+```java
+Arena arena = Arena.ofShared();
+MemorySegment seg = arena.allocate(4);
+seg.set(ValueLayout.JAVA_INT, 0, 42);
+int value = seg.get(ValueLayout.JAVA_INT, 0);
+arena.close(); // explicit close; deallocates memory for all threads
+// Closing a shared arena is however an expensive operation
+```
+
+<!--
+Closing a shared arena is expensive as it involves synchronization 
+-->
 
 ---
 
@@ -84,7 +124,6 @@ try (Arena a = Arena.ofConfined()) {
 ## Native interop
 - On-heap segments cannot be passed to native code
 - MemorySegments wrap pointers returned from native code
-<!--   - Zero length  -->
 
 ---
 # Memory Segments
