@@ -317,7 +317,10 @@ Arena.ofAuto().allocate(structLayout);
 
 # UnionLayout
 <!--
-Ein weiteres Beispiel der 
+Ein sehr ähnlich aussehendes MemoryLayout sind UnionLayouts:
+genau so wie beim StructLayout entspricht das UnionLayout seinem C äquivalent: der Union (hier oben)
+
+darunter sieht man, wie gerade eben, wie das UnionLayout in Java funktioniert.
 -->
 C:
 ```c
@@ -336,6 +339,16 @@ MemoryLayout unionLayout = MemoryLayout.unionLayout(
 
 ---
 # SequenceLayout
+<!--
+Da jetzt bekannt ist wie C Structs und Unions mithilfe der FFM API in Speicher modelliert werden können, fehlen jetzt nur noch:
+Arrays
+
+Um Objekte zu modellieren, die sequentiell im Speicher liegen, bietet die FFM API SequenceLayouts
+
+In dem gezeigten Beispiel, wird der Speicher so modelliert, dass vier longs gespeichert werden können.
+Das lässt sich einerseits mit StructLayouts realisieren
+Andererseits mit dem SequenceLayout wesentlich simpler (100x longs)
+-->
 As a `StructLayout`:
 ```java
 MemoryLayout sequence = MemoryLayout.structLayout(
@@ -348,14 +361,25 @@ MemoryLayout sequence = MemoryLayout.sequenceLayout(4, JAVA_LONG);
 ```
 
 ---
-# Accessing Memory with MemoryLayouts
+# Referencing Memory with MemoryLayouts
+<!--
+Da jetzt alle signifikanten MemoryLayouts bekannt sind, kann angefangen werden damit ordentlich zu arbeiten.
+Das Allocaten von Speicher mithilfe der Layouts haben wir schon gezeigt, aber wie greift man dann darauf zu?
+
+Hier ist ein Beispiel-Layout gegeben, das auch in den nachfolgenden Folien gleich bleiben wird:
+Ein StructLayout mit einem x und einem y Wert -> Koordinate
+davon 4 in einer Sequence
+
+Unten kann man sehen wie man auf ein SubLayout in einem SequenceLayout zugegriffen werden kann:
+Hier einfach auf das erste Element der Sequenz / des Arrays
+-->
 Given a `MemoryLayout`:
 ```java
 MemoryLayout points = MemoryLayout.sequenceLayout(
     4,
     MemoryLayout.structLayout(
-        ValueLayout.JAVA_INT.withName("x"),
-        ValueLayout.JAVA_INT.withName("y")
+        JAVA_INT.withName("x"),
+        JAVA_INT.withName("y")
     )
 );
 ```
@@ -368,27 +392,40 @@ MemoryLayout point0 = points.select(
 ```
 
 ---
-# Accessing Memory with MemoryLayouts
+# Referencing Memory with MemoryLayouts
+<!--
+Hier eine Neuerung, zwei Informationen:
+- Um auf Elemente in StructLayouts zuzugreifen müssen die withName haben;
+- Die PathElements können im select kombiniert werden
+
+Das returned ein MemoryLayout, das war in diesem Fall auch vorher schon bekannt
+-->
 Given a `MemoryLayout`:
 ```java
 MemoryLayout points = MemoryLayout.sequenceLayout( 
     4,
     MemoryLayout.structLayout(
-        ValueLayout.JAVA_INT.withName("x"),
-        ValueLayout.JAVA_INT.withName("y")
+        JAVA_INT.withName("x"),
+        JAVA_INT.withName("y")
     )
 );
 ```
-
 Referencing the first `StructLayout`'s `x`:
 ```java
 MemoryLayout xValue = points.select(
-    PathElement.sequenceElement(0), PathElement.groupElement("x")
+    PathElement.sequenceElement(0), 
+    PathElement.groupElement("x")
 );
 ```
 
 ---
 # Referencing Memory with VarHandles
+<!--
+- Daher gibt es VarHandles.
+- referenzierte Layout immer noch das gleiche
+- unten jetzt `.varHandle` statt `.select` und returned ein VarHandle
+
+-->
 Given a `MemoryLayout`:
 ```java
 MemoryLayout points = MemoryLayout.sequenceLayout( 
@@ -399,8 +436,7 @@ MemoryLayout points = MemoryLayout.sequenceLayout(
     )
 );
 ```
-
-Accessing the first `StructLayout`'s `x`:
+Referencing the first `StructLayout`'s `x`:
 ```java
 VarHandle xHandle = points.varHandle(
     PathElement.sequenceElement(0),
@@ -409,6 +445,12 @@ VarHandle xHandle = points.varHandle(
 ```
 
 ---
+<!--
+- Was kann man mit einem VarHandle machen?
+- oben jetzt die Definition des VarHandles, die gerade unten stand
+- `.get` und `.set` zum Lesen und Schreiben von Speicher mit dem VarHandle
+  - Argument: MemorySegment, das als Inhalt Daten im Layout unseres originalen SequenceLayouts mit 4 Koordinaten hat 
+-->
 
 # Accessing Memory with VarHandles
 Given the `VarHandle` from before:
