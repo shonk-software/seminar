@@ -167,7 +167,9 @@ MemoryLayouts zum Beschreiben der Struktur des Speichers.
     - Größe
     - Alignment
     - Anordnung von Objekten
-- von Speicher in den MemorySegments zu beschreiben und erlauben somit einfacheren, strukturierten Zugriff auf den Speicher.
+- zu beschreiben -> einfacheren, strukturierten Zugriff auf den Speicher.
+- sind nur eine Karte für MemorySegments! MemorySegments an sich immer noch nötig
+  - Hitchhikers Guide to the Data
 - mehrere Subtypen:
 -->
 
@@ -180,9 +182,9 @@ Describe the memory's structure:
 
 ---
 <!--
-Zuerst gucken wir uns ValueLayouts an:
+Zuerst - ValueLayouts:
 - eine der einfachsten MemoryLayouts
-- beschreibt Struktur von simplen Datentypen, wie Integern, Floats und Adressen
+- beschreibt Struktur von simplen Datentypen, wie Integern und Doubles (oder auch Adressen)
 
 - JAVA_INT beschreibt also Größe und Alignment von einem Java int (4 bytes groß, 4 bytes aligned)
 
@@ -223,7 +225,7 @@ MemoryLayout doubleLayout = JAVA_DOUBLE;
 Hier ein Beispiel, was mit einem MemoryLayout ein MemorySegment allocated.
 -> sehr ähnlich zu schon gezeigtem Code.
 
-Allocated automatisch Speicher für 3 Java Integer im Segment
+Allocated automatisch Speicher für einen Java Integer im Segment
 -->
 ```java
 try (Arena arena = Arena.ofConfined()) {
@@ -231,7 +233,7 @@ try (Arena arena = Arena.ofConfined()) {
     ...
 
     MemorySegment segment = arena.allocate(
-        JAVA_INT, 3
+        JAVA_INT, 0
     );
 
     ...
@@ -292,6 +294,8 @@ Hier jetzt das gleiche C struct und Beispiel Java Code zum allocaten des Speiche
 - bessere Lesbarkeit, starke Ähnlichkeit zum C Code -> Maintainability
 - withName später noch genauer, aktuell auch einfach Lesbarkeit
 - allocate nimmt dann nur noch das structLayout, alignment ist automatisch bekannt
+
+Wichtig zu erwähnen: StructLayouts achten nicht automatisch auf alignment und wenn Padding benötigt wird, muss das auf der FFM Seite mit PaddingLayout manuell realisiert werden.
 -->
 
 # StructLayout cont'd
@@ -361,7 +365,7 @@ MemoryLayout sequence = MemoryLayout.sequenceLayout(4, JAVA_LONG);
 ```
 
 ---
-# Referencing Memory with MemoryLayouts
+# Referencing Memory with VarHandles
 <!--
 Da jetzt alle signifikanten MemoryLayouts bekannt sind, kann angefangen werden damit ordentlich zu arbeiten.
 Das Allocaten von Speicher mithilfe der Layouts haben wir schon gezeigt, aber wie greift man dann darauf zu?
@@ -370,60 +374,9 @@ Hier ist ein Beispiel-Layout gegeben, das auch in den nachfolgenden Folien gleic
 Ein StructLayout mit einem x und einem y Wert -> Koordinate
 davon 4 in einer Sequence
 
-Unten kann man sehen wie man auf ein SubLayout in einem SequenceLayout zugegriffen werden kann:
-Hier einfach auf das erste Element der Sequenz / des Arrays
--->
-Given a `MemoryLayout`:
-```java
-MemoryLayout points = MemoryLayout.sequenceLayout(
-    4,
-    MemoryLayout.structLayout(
-        JAVA_INT.withName("x"),
-        JAVA_INT.withName("y")
-    )
-);
-```
-
-Referencing the first `StructLayout` in the sequence:
-```java
-MemoryLayout point0 = points.select(
-    PathElement.sequenceElement(0)
-);
-```
-
----
-# Referencing Memory with MemoryLayouts
-<!--
-Hier eine Neuerung, zwei Informationen:
-- Um auf Elemente in StructLayouts zuzugreifen müssen die withName haben;
-- Die PathElements können im select kombiniert werden
-
-Das returned ein MemoryLayout, das war in diesem Fall auch vorher schon bekannt
--->
-Given a `MemoryLayout`:
-```java
-MemoryLayout points = MemoryLayout.sequenceLayout( 
-    4,
-    MemoryLayout.structLayout(
-        JAVA_INT.withName("x"),
-        JAVA_INT.withName("y")
-    )
-);
-```
-Referencing the first `StructLayout`'s `x`:
-```java
-MemoryLayout xValue = points.select(
-    PathElement.sequenceElement(0), 
-    PathElement.groupElement("x")
-);
-```
-
----
-# Referencing Memory with VarHandles
-<!--
-- Daher gibt es VarHandles.
-- referenzierte Layout immer noch das gleiche
-- unten jetzt `.varHandle` statt `.select` und returned ein VarHandle
+Unten:
+- Referenz auf Variable x des ersten Elements der Sequenz
+- VarHandle auf das Layout x
 
 -->
 Given a `MemoryLayout`:
