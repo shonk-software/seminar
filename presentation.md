@@ -158,18 +158,43 @@ cityNameSegment.reinterpret(Long.MAX_VALUE).getString(0)
 header: MemoryLayouts
 -->
 
+<!--
+Da jetzt bekannt ist, wie mit MemorySegments Speicher allocated, gelesen und manipuliert werden kann ->  
+MemoryLayouts zum Beschreiben der Struktur des Speichers.
+
+- Speicher selten einfach nur ein Int, wie in den Folien bisher gezeigt, sondern komplizierter
+- MemoryLayouts erlauben es Struktur, inklusive
+    - Größe
+    - Alignment
+    - Anordnung von Objekten
+- von Speicher in den MemorySegments zu beschreiben und erlauben somit einfacheren, strukturierten Zugriff auf den Speicher.
+- mehrere Subtypen:
+-->
+
 Describe the memory's structure:
 - size
 - alignment
 - data arrangement within a segment
 
--> Allow safe memory access 
+-> Allow easy access to structured memory 
 
 ---
+<!--
+Zuerst gucken wir uns ValueLayouts an:
+- eine der einfachsten MemoryLayouts
+- beschreibt Struktur von simplen Datentypen, wie Integern, Floats und Adressen
+
+- JAVA_INT beschreibt also Größe und Alignment von einem Java int (4 bytes groß, 4 bytes aligned)
+
+- um deutlich zu machen, dass es sich hier um ValueLayouts handelt, haben wir bisher das 'ValueLayout.' immer stehen gelassen.
+(SWITCH)
+-->
 
 # ValueLayout
+Describes memory of basic data types:
 ```java
 MemoryLayout integerLayout = ValueLayout.JAVA_INT;
+
 
 MemoryLayout doubleLayout = ValueLayout.JAVA_DOUBLE;
 ```
@@ -178,24 +203,28 @@ MemoryLayout doubleLayout = ValueLayout.JAVA_DOUBLE;
 
 # ValueLayout
 
+<!-- 
+In den folgenden Folien, werden wir aber so tun als würden wir die ValueLayouts direkt importen, um die Folien ein bisschen lesbarer zu halten
+
+kurzer Einschub, bevor wir über andere Typen von MemoryLayouts reden:
+Wie kann man MemoryLayouts benutzen?
+-->
+Describes memory of basic data types:
 ```java
 MemoryLayout integerLayout = JAVA_INT;
+
 
 MemoryLayout doubleLayout = JAVA_DOUBLE;
 ```
 
 ---
-
-# PaddingLayout
-
-```java
-MemoryLayout padding = MemoryLayout.paddingLayout(3);
-```
-
-
----
 # Memory Allocation with MemoryLayouts
+<!--
+Hier ein Beispiel, was mit einem MemoryLayout ein MemorySegment allocated.
+-> sehr ähnlich zu schon gezeigtem Code.
 
+Allocated automatisch Speicher für 3 Java Integer im Segment
+-->
 ```java
 try (Arena arena = Arena.ofConfined()) {
 
@@ -211,7 +240,35 @@ try (Arena arena = Arena.ofConfined()) {
 
 ---
 
+# PaddingLayout
+<!--
+Der nächste, relativ simple, subtyp von MemoryLayouts:
+PaddingLayout
+
+- Beschreibt simples padding, also ungenutzten Speicher
+- Vor allem als Sublayout in den folgenden, komplizierteren MemoryLayouts gebraucht
+-->
+Describes padding of `n` bytes:
+```java
+MemoryLayout padding = MemoryLayout.paddingLayout(3);
+```
+
+---
+
 # StructLayout
+<!--
+Nun zu komplizierteren MemoryLayouts:
+StructLayouts
+
+Name sagt es schon: beschreiben Speicher, wie er für ein C struct genutzt wird.
+
+Hier beispiel C struct: ein Item mit id und value
+
+Darunter Java Beispiel Code um Speicher dafür zu allocaten, ohne StructLayouts zu benutzen:
+- benötigte Größe bestimmen
+- entsprechendes Alignment bestimmen
+- manuelles allocaten
+-->
 
 C:
 ```c
@@ -229,6 +286,13 @@ MemorySegment segment = Arena.ofAuto().allocate(size, alignment);
 ```
 
 ---
+<!--
+Hier jetzt das gleiche C struct und Beispiel Java Code zum allocaten des Speichers hierfür mit dem StructLayout
+
+- bessere Lesbarkeit, starke Ähnlichkeit zum C Code -> Maintainability
+- withName später noch genauer, aktuell auch einfach Lesbarkeit
+- allocate nimmt dann nur noch das structLayout, alignment ist automatisch bekannt
+-->
 
 # StructLayout cont'd
 
@@ -252,6 +316,9 @@ Arena.ofAuto().allocate(structLayout);
 ---
 
 # UnionLayout
+<!--
+Ein weiteres Beispiel der 
+-->
 C:
 ```c
 union number {
