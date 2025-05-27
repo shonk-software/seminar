@@ -15,7 +15,7 @@ class:
 
 ---
 
-# Gliederung
+# Structure
 
 - ### **Introduction**
 - MemorySegments
@@ -39,7 +39,7 @@ class:
 
 ---
 
-# Gliederung
+# Structure
 
 - Introduction
 - ### **MemorySegments**
@@ -233,7 +233,7 @@ cityNameSegment.reinterpret(Long.MAX_VALUE).getString(0)
 
 ---
 
-# Gliederung
+# Structure
 
 - Introduction
 - MemorySegments
@@ -515,7 +515,7 @@ xHandle.set(memorySegment, 0, newValue)
 
 ---
 
-# Gliederung
+# Structure
 
 - Introduction
 - MemorySegments
@@ -525,7 +525,7 @@ xHandle.set(memorySegment, 0, newValue)
 
 ---
 
-# Gliederung
+# Structure
 
 - Introduction
 - MemorySegments
