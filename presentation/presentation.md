@@ -326,9 +326,7 @@ try (Arena arena = Arena.ofConfined()) {
 
     ...
 
-    MemorySegment segment = arena.allocate(
-        JAVA_INT, 0
-    );
+    MemorySegment segment = arena.allocate(JAVA_INT);
 
     ...
 }
