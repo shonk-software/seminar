@@ -57,7 +57,7 @@ Basically anything pointer
 
 <!--
 - MemorySegments können durch einen SegmentAllocator allocated werden.
-- Arena praktisch der Hauptimplementierer des SegmentAllocator Interfaces und kontrolliert den Geltungsbereich von MemorySegments die in ihr allocated sind.
+- Arena sind praktisch der Hauptimplementierer des SegmentAllocator Interfaces und kontrolliert den Geltungsbereich von MemorySegments die in ihr allocated sind.
 - Wenn eine Arena geschlossen wird, wird sämtlicher Speicher der in ihr allocated wurde, freigegeben.
 - Es gibt dabei verschiedene Arenen mit unterschiedlichen Eigenschaften:
   - Global Arena, existiert über die gesamte Lebensdauer der Anwendung hinweg und ist von überall aus zugänglich. Speicher, der in ihr allocated wird, wird niemals freigegeben. Kann nicht explizit geschlossen werden. (wirft exception)
