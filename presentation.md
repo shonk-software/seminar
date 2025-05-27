@@ -78,6 +78,15 @@ try (Arena arena = Arena.ofConfined()) {
 }
 ```
 
+<!--
+Explain the code...
+- Confined Arena is created
+- Memory Segment with 4 bytes of space is allocated
+- We write an int into the segment
+- We retrieve the int from the segment
+- try() Block ends, memory deallocated yippie
+-->
+
 ---
 
 # Memory Segments
@@ -103,6 +112,14 @@ Closing a shared arena is expensive as it involves synchronization
 - MemorySegments can be sliced
 - MemorySegments can be made read-only
 
+<!--
+- Slice acts as a view or window
+- Original segment is still accessible in its entirety
+- Slices are new segments, same lifetime scope only different base pointer and length
+- Read only - selbsterklärend, no?
+- Read only - Why would you even need it? -> for example passing Segments to other code and sleeping safe knowing nothing can be modified
+-->
+
 ---
 
 ## Memory Segments
@@ -118,6 +135,10 @@ try (Arena a = Arena.ofConfined()) {
 }
 ```
 
+<!--
+- Beispiel erklären, kurz !!
+-->
+
 ---
 
 # Memory Segments
@@ -125,12 +146,23 @@ try (Arena a = Arena.ofConfined()) {
 - On-heap segments cannot be passed to native code
 - MemorySegments wrap pointers returned from native code
 
+<!--
+- On-heap segments cannot be passed to native code
+- MemorySegments are used to wrap pointers returned from native code
+  - You need to know what the functions return to properly work with the returned pointer / Segment
+-->
+
 ---
 # Memory Segments
 ## Native interop - Function pointers
 - Zero-length MemorySegment
   - Can be passed to native code accepting function pointers
   - MethodHandle to call
+
+<!--
+- MemorySegments also wrap function pointers so that they can be passed to native code.
+- They also wrap function pointers to native code, which can be turned into a callable MethodHandle.
+-->
 
 ---
 
@@ -143,6 +175,12 @@ try (Arena a = Arena.ofConfined()) {
 cityNameSegment.reinterpret(Long.MAX_VALUE).getString(0)
 ```
 
+<!--
+- As the length / size of pointers that get returned from native code is unknown (like the length of a string) they get wrapped in a MemorySegment of length 0.
+- They have to be reinterpreted into a new MemorySegment with a different size to be accessed, this is an unsafe operation as you could theoretically now try to access out of bounds memory which can crash the JVM or corrupt memory.
+- Reinterpret is one of the restricted methods, access to which has to be explicitely enabled.
+-->
+
 ---
 
 # Memory Segments - Summary
@@ -150,6 +188,11 @@ cityNameSegment.reinterpret(Long.MAX_VALUE).getString(0)
 - Spatial and temporal guarantees
 - Ergonomic handling via Arenas
 - Allows slicing and read-only access
+
+<!--
+- All in all MemorySegments provide a unified type-safe abstraction over pointers while giving certain spatial and temporal guarantees.
+- They provide ergonomic handling via arenas, allowing the developers to make trade-offs between aspects like ease of use or speed
+-->
 
 ---
 
