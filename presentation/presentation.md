@@ -11,12 +11,45 @@ class:
   - invert
 -->
 
-TITLE PAGE
+# FFM: Reading & Writing Structured Memory
 
 ---
 
-# FFM Technical Aspects introduction here?
+# Gliederung
 
+- ### **Introduction**
+- MemorySegments
+- MemoryLayouts
+- Zeigen des POC
+- Conclusion
+
+---
+
+# Intro
+<!--
+- Hi, in unserer Seminararbeit haben wir uns mit dem Lesen und Schreiben von strukturiertem Speicher mithilfe der FFM API beschäftigt.
+- Wir erzählen euch heute ein bisschen über die Ergebnisse.
+- Aber erstmal ein wenig zu unserer Methodik;
+  - Wir haben angefangen erstmal die JEPs, OpenJDK Dokumentation sowie die Oracle Dokumentation durchzulesen. 
+  - Von da aus sind wir meist noch auf weitere Quellen gestoßen.
+  - Einige Recherchegebiete haben sich auch beim basteln den POCs ergeben.
+- TODO: Braucht glaube ich eine bessere Überleitung
+-->
+
+
+---
+
+# Gliederung
+
+- Introduction
+- ### **MemorySegments**
+- MemoryLayouts
+- Zeigen des POC
+- Conclusion
+
+<!--
+- Wir fangen dann gleich mit den MemorySegments an
+-->
 
 ---
 
@@ -200,6 +233,15 @@ cityNameSegment.reinterpret(Long.MAX_VALUE).getString(0)
 
 ---
 
+# Gliederung
+
+- Introduction
+- MemorySegments
+- ### **MemoryLayouts**
+- Zeigen des POC
+- Conclusion
+
+---
 
 # Memory Layouts
 <!--
@@ -472,3 +514,27 @@ int oldValue = (int) xHandle.get(memorySegment, 0);
 int newValue = 3;
 xHandle.set(memorySegment, 0, newValue)
 ```
+
+---
+
+# Gliederung
+
+- Introduction
+- MemorySegments
+- MemoryLayouts
+- ### **Zeigen des POC**
+- Conclusion
+
+---
+
+# Gliederung
+
+- Introduction
+- MemorySegments
+- MemoryLayouts
+- Zeigen des POC
+- ### **Conclusion**
+
+---
+
+# Conclusion
