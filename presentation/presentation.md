@@ -24,7 +24,7 @@ _header: Structure
 - ### **Introduction**
 - MemorySegments
 - MemoryLayouts
-- Zeigen des POC
+- Proof of Concept
 - Conclusion
 
 ---
@@ -56,7 +56,7 @@ _header: Structure
 - Introduction
 - ### **MemorySegments**
 - MemoryLayouts
-- Zeigen des POC
+- Proof of Concept
 - Conclusion
 
 <!--
@@ -250,7 +250,7 @@ _header: Structure
 - Introduction
 - MemorySegments
 - ### **MemoryLayouts**
-- Zeigen des POC
+- Proof of Concept
 - Conclusion
 
 ---
@@ -536,7 +536,7 @@ _header: Structure
 - Introduction
 - MemorySegments
 - MemoryLayouts
-- ### **Zeigen des POC**
+- ### **Proof of Concept**
 - Conclusion
 
 ---
@@ -550,7 +550,7 @@ _header: Structure
 - Introduction
 - MemorySegments
 - MemoryLayouts
-- Zeigen des POC
+- Proof of Concept
 - ### **Conclusion**
 
 ---
