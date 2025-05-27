@@ -24,11 +24,6 @@ Provide:
 - Spatial and temporal guarantees
 
 <!--
-- Memory Segments provide a unified, type-safe abstraction over on- and off-heap memory.
-- They also provide spatial and temporal guarantees, which I will explain soon.
-
-
-
 - MemorySegments stellen eine einheitliche, Typensichere Abstraktion über on- und off-heap Speicher bereit
 - Sie bieten auch räumliche und zeitliche Garantien, da erkläre ich gleich aber nochmal genauer.
 -->
@@ -47,11 +42,6 @@ Wrap:
 Basically anything pointer
 
 <!--
-They're fat pointers that wrap on-heap memory, off-heap memory and function pointers.
-That means that they're made up of a base pointer & length, plus some additional metadata like lifetime scope, Thread access control etc.
-They provide spatial safety via the stored length, reads and writes are checked for out of bounds access like arrays.
-
-
 - MemorySegments sind fat Pointer und kapseln on- und off-heap Speicher sowie Funktionspointer
 - Fat pointer bedeuted, dass zusätzlich zum (base) Pointer noch Metadaten wie die Länge, Lifetime Scope (Geltungsbereich), Thread Zugriffskontrolle und ähnliches vorhanden sind.
 - Durch die gespeicherte Länge werden out-of-bounds Speicherzugriffe verhindert, indem alle Lese- oder Schreibzugriffe geprüft werden.
@@ -90,13 +80,12 @@ try (Arena arena = Arena.ofConfined()) {
 ```
 
 <!--
-Autocloseable erwähnen?
-Explain the code...
-- Confined Arena is created
-- Memory Segment with 4 bytes of space is allocated
-- We write an int into the segment
-- We retrieve the int from the segment
-- try() Block ends, memory deallocated yippie
+- Arenas implementieren Autoclosable und können daher gut mit try-with-resources Blöcken verwendet werden
+- Confined Arena wird erstellt
+- MemorySegment mit Platz für 4 Byte wird allocated
+- Ein int wird reingeschrieben
+- Der int wird wieder ausgelesen
+- try() block endet, memory wird deallocated
 -->
 
 ---
@@ -115,21 +104,27 @@ arena.close(); // explicit close; deallocates memory for all threads
 
 <!--
 Closing a shared arena is expensive as it involves synchronization 
+- Hier machen wir mit der shared Arena die gleichen Operationen wie eben, nur ohne den try-with-resources
+- try-with-resources kann hier natürlich aber auch benutzt werden.
+- Das schließen einer shared Arena involviert Synchronisationsoperationen und ist etwas aufwendiger bzw. teurer
 -->
 
 ---
 
-# Memory Segments
-## Slices & Read-only
+### Memory Segments
+#### Slices & Read-only
+
 - MemorySegments can be sliced
 - MemorySegments can be made read-only
 
+![bg right width:600px](segment-slice-view.svg)
+
 <!--
-- Slice acts as a view or window
-- Original segment is still accessible in its entirety
-- Slices are new segments, same lifetime scope only different base pointer and length
-- Read only - selbsterklärend, no?
-- Read only - Why would you even need it? -> for example passing Segments to other code and sleeping safe knowing nothing can be modified
+- MemorySegments können auch in Slices unterteilt werden
+- Slices sind neue MemorySegments die ihren zugrundeliegenden Speicher mit dem ursprünglichen Segment teilen
+- Diese neuen MemorySegments haben lediglich einen anderen base Pointer und Länge, der lifetime scope ändert sich nicht.
+- Segments können auch read-only markiert werden, ein Slice von diesem ist dann auch read-only, allerdings nur innerhalb der JVM.
+- (Optional warum)
 -->
 
 ---
