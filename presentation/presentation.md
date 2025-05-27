@@ -25,7 +25,7 @@ Provide:
 
 <!--
 - MemorySegments stellen eine einheitliche, Typensichere Abstraktion über on- und off-heap Speicher bereit
-- Sie bieten auch räumliche und zeitliche Garantien, da erkläre ich gleich aber nochmal genauer.
+- Dabei bieten sie auch räumliche und zeitliche Garantien, das erkläre ich aber gleich auch nochmal genauer.
 -->
 
 ---
@@ -43,7 +43,7 @@ Basically anything pointer
 
 <!--
 - MemorySegments sind fat Pointer und kapseln on- und off-heap Speicher sowie Funktionspointer
-- Fat pointer bedeuted, dass zusätzlich zum (base) Pointer noch Metadaten wie die Länge, Lifetime Scope (Geltungsbereich), Thread Zugriffskontrolle und ähnliches vorhanden sind.
+- Fat pointer bedeuted, dass diese zusätzlich zum (base) Pointer noch Metadaten wie die Länge, Lifetime Scope (Geltungsbereich), Thread Zugriffskontrolle und ähnliches speichern.
 - Durch die gespeicherte Länge werden out-of-bounds Speicherzugriffe verhindert, indem alle Lese- oder Schreibzugriffe geprüft werden.
 -->
 
@@ -56,8 +56,8 @@ Basically anything pointer
   - Global / Automatic / Shared / Confined
 
 <!--
-- MemorySegments können durch einen SegmentAllocator allocated werden.
-- Arena sind praktisch der Hauptimplementierer des SegmentAllocator Interfaces und kontrolliert den Geltungsbereich von MemorySegments die in ihr allocated sind.
+- MemorySegments können durch einen Implementierer des SegmentAllocator Interfaces allocated werden.
+- Arena ist dabei der Hauptimplementierer des Interfaces und kontrolliert den Geltungsbereich von MemorySegments die in ihr allocated sind.
 - Wenn eine Arena geschlossen wird, wird sämtlicher Speicher der in ihr allocated wurde, freigegeben.
 - Es gibt dabei verschiedene Arenen mit unterschiedlichen Eigenschaften:
   - Global Arena, existiert über die gesamte Lebensdauer der Anwendung hinweg und ist von überall aus zugänglich. Speicher, der in ihr allocated wird, wird niemals freigegeben. Kann nicht explizit geschlossen werden. (wirft exception)
