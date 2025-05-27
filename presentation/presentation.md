@@ -599,3 +599,15 @@ header: Conclusion
 -->
 
 # Conclusion
+- The FFM API provides precise control over memory allocation, layout & lifetime
+- While designed for interaction with C, interop with other language simple via C-ABI
+- Viable option for interlanguage data processing & performance-sensitive applications
+- Impressive usability while promoting safety & performance
+
+<!--
+- So, damit kommen wir zu unserem Fazit.
+- All in All gibt die FFM API Entwicklern präzise Kontrolle über Speicher allocation, Layout und Lebensdauer.
+- Die API ist zwar für die Interaktion mit C designed, kann aber natürlich auch mit anderen Sprachen verwendet werden, sofern diese sich an die C-ABI halten.
+- Das macht die FFM API zu einer praktikablen Option für die Interoperabilität mit anderen Sprachen sowie performancekritische Anwendungen.
+- Das Design der API fördert Geschwindigkeit und Sicherheit und ist dabei überraschend Benutzerfreundlich was sie zu einem wertvollen Werkzeug für Entwickler macht, die präzise manuelle Kontrolle über Speicher in Java benötigen sowie Entwickler die native Bibliotheken verwenden wollen.
+-->
