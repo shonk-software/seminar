@@ -111,13 +111,54 @@ Basically anything pointer
 - Arena ist dabei der Hauptimplementierer des Interfaces und kontrolliert den Geltungsbereich von MemorySegments die in ihr allocated sind.
 - Wenn eine Arena geschlossen wird, wird sämtlicher Speicher der in ihr allocated wurde, freigegeben.
 - Es gibt dabei verschiedene Arenas mit unterschiedlichen Eigenschaften:
-  - Global Arena: Existiert und ist offen für Lebensdauer Anwendung.
-    - Von überall accessible und kann nicht explizit geschlossen werden (Exception).
-    - Speicher wird während Runtime nicht freigegeben
-  - Automatic Arena, lebt solange, wie Garbage Collector sie & MemorySegments als erreichbar ansieht.
-    - Wie die Globale Arena nicht explizit geschlossen werden
-  - Shared Arena ist eine simple Arena, auf die von mehreren Threads aus zugegriffen und geschlossen werden kann. 
-  - Die Confined Arena hat einen Besitzer-Thread und Zugriff auf sie ist nur von diesem Thread aus möglich und sie kann nur von dort aus geschlossen werden.
+-->
+
+---
+
+# Arena - Global
+- Exists and is open for the duration of the Application
+- Accessible from everywhere
+- Does not deallocate during Runtime
+- Cannot be closed explicitely (attempt throws exception)
+
+<!--
+Global Arena: Existiert und ist offen für Lebensdauer Anwendung.
+  - Von überall accessible und kann nicht explizit geschlossen werden (Exception).
+  - Speicher wird während Runtime nicht freigegeben
+-->
+
+---
+
+# Arena - Automatic
+- Is open as long as it and MemorySegments allocated within it
+are deemed accessible by the GC
+- Shared access by multiple threads
+- Cannot be closed explicitely (attempt throws exception)
+
+<!--
+- Automatic Arena; Lebt so lange, wie der Garbage Collector sie und MemorySegments die in ihr allocated wurden als erreichbar ansieht.
+- Kann wie die globale Arena nicht explizit geschlossen werden
+-->
+
+---
+
+# Arena - Shared
+- Shared access by multiple threads
+- Can be closed explicitely by any thread
+
+<!--
+- Shared Arena ist eine simple Arena, auf die von mehreren Threads aus zugegriffen und geschlossen werden kann. 
+-->
+
+---
+
+# Arena - Confined
+- Has an owner thread
+- MemorySegments allocated within only accessible by owner thread
+- Can be closed explicitely by owner thread only
+
+<!--
+- Die Confined Arena hat einen Besitzer-Thread und Zugriff auf sie ist nur von diesem Thread aus möglich und sie kann nur von dort aus geschlossen werden.
 -->
 
 ---
