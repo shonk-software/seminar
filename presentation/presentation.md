@@ -204,17 +204,21 @@ header: MemoryLayouts
 -->
 
 <!--
-Da jetzt bekannt ist, wie mit MemorySegments Speicher allocated, gelesen und manipuliert werden kann ->  
-MemoryLayouts zum Beschreiben der Struktur des Speichers.
+- jetzt bekannt wie mit MemorySegments
+  - allocated
+  - gelesen
+  - geschrieben
+  werden kann
+-> Werkzeug zum Beschreiben der Struktur des Speichers 
+-> MemoryLayouts
 
-- Speicher selten einfach nur ein Int, wie in den Folien bisher gezeigt, sondern komplizierter
+- denn Speicher selten einfach nur ein Int, wie in den Folien bisher gezeigt, sondern komplizierter
 - MemoryLayouts erlauben es Struktur, inklusive
     - Größe
     - Alignment
     - Anordnung von Objekten
 - zu beschreiben -> einfacheren, strukturierten Zugriff auf den Speicher.
-- sind nur eine Karte für MemorySegments! MemorySegments an sich immer noch nötig
-  - Hitchhikers Guide to the Data
+- sind nur eine Karte für MemorySegments! Speicherzugriffe weiterhin über MemorySegment
 - mehrere Subtypen:
 -->
 
