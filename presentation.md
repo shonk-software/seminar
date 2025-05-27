@@ -15,7 +15,6 @@ TITLE PAGE
 # FFM Technical Aspects introduction here?
 
 
-
 ---
 
 # Memory Segments
@@ -25,15 +24,20 @@ Provide:
 - Spatial and temporal guarantees
 
 <!--
-Memory Segments provide a unified, type-safe abstraction over on- and off-heap memory.
-They also provide Spatial and temporal guarantees, which I will explain soon.
+- Memory Segments provide a unified, type-safe abstraction over on- and off-heap memory.
+- They also provide spatial and temporal guarantees, which I will explain soon.
+
+
+
+- MemorySegments stellen eine einheitliche, Typensichere Abstraktion über on- und off-heap Speicher bereit
+- Sie bieten auch räumliche und zeitliche Garantien, da erkläre ich gleich aber nochmal genauer.
 -->
 
 ---
 
 # Memory Segments
 
-Combination of (base) pointer & length
+Combination of (base) pointer & Metadata (length etc.)
 
 Wrap:
 - On-heap
@@ -46,6 +50,11 @@ Basically anything pointer
 They're fat pointers that wrap on-heap memory, off-heap memory and function pointers.
 That means that they're made up of a base pointer & length, plus some additional metadata like lifetime scope, Thread access control etc.
 They provide spatial safety via the stored length, reads and writes are checked for out of bounds access like arrays.
+
+
+- MemorySegments sind fat Pointer und kapseln on- und off-heap Speicher sowie Funktionspointer
+- Fat pointer bedeuted, dass zusätzlich zum (base) Pointer noch Metadaten wie die Länge, Lifetime Scope (Geltungsbereich), Thread Zugriffskontrolle und ähnliches vorhanden sind.
+- Durch die gespeicherte Länge werden out-of-bounds Speicherzugriffe verhindert, indem alle Lese- oder Schreibzugriffe geprüft werden.
 -->
 
 ---
@@ -57,14 +66,16 @@ They provide spatial safety via the stored length, reads and writes are checked 
   - Global / Automatic / Shared / Confined
 
 <!--
-MemorySegments can be allocated by a SegmentAllocator.
-Arena is one of these (basically the main) implementor of the SegmentAllocator interface and controls the lifecycle of MemorySegments allocated within it.
-There are different types of Arenas:
-- Global (which lives as long as the entire application and is accessible from everywhere. Memory allocated within it is never deallocated.)
-- Automatic (which lives as long as it and any MemorySegment allocated inside it is deemed reachable by the Garbage Collector)
-- Shared (simple Arena which can be shared between Threads and closed manually by any Thread)
-- Confined (an Arena that cannot be shared between threads and is usually used in combination with a try-with-resources)
+- MemorySegments können durch einen SegmentAllocator allocated werden.
+- Arena praktisch der Hauptimplementierer des SegmentAllocator Interfaces und kontrolliert den Geltungsbereich von MemorySegments die in ihr allocated sind.
+- Wenn eine Arena geschlossen wird, wird sämtlicher Speicher der in ihr allocated wurde, freigegeben.
+- Es gibt dabei verschiedene Arenen mit unterschiedlichen Eigenschaften:
+  - Global Arena, existiert über die gesamte Lebensdauer der Anwendung hinweg und ist von überall aus zugänglich. Speicher, der in ihr allocated wird, wird niemals freigegeben. Kann nicht explizit geschlossen werden. (wirft exception)
+  - Automatic Arena, lebt solange, bis der Garbage Collector sie oder MemorySegments die in ihr allocated wurden als erreichbar ansieht. Kann auch nicht explizit geschlossen werden.
+  - Shared Arena ist eine simple Arena, auf die von mehreren Threads aus zugegriffen und geschlossen werden kann. 
+  - Auf die Confined Arena kann nur von einem Thread aus zugegriffen und geschlossen werden kann.
 -->
+
 ---
 
 # Memory Segments
@@ -79,6 +90,7 @@ try (Arena arena = Arena.ofConfined()) {
 ```
 
 <!--
+Autocloseable erwähnen?
 Explain the code...
 - Confined Arena is created
 - Memory Segment with 4 bytes of space is allocated
