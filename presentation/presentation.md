@@ -206,7 +206,7 @@ arena.close(); // explicit close; deallocates memory for all threads
 - MemorySegments can be sliced
 - MemorySegments can be made read-only
 
-![bg right width:600px](slices-final.svg)
+![bg right width:600px](slices-diagram.svg)
 
 <!--
 - MemorySegments können auch in Slices unterteilt werden
