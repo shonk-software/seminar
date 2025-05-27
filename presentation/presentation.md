@@ -13,6 +13,11 @@ class:
 
 # FFM: Reading & Writing Structured Memory
 
+<!--
+- Hi, im Rahmen unserer Seminararbeit haben wir uns mit der Java Foreign Function & Memory API mit einem Schwerpunkt auf Lesen und Schreiben von strukturiertem Speicher auseinander gesetzt.
+- Kurzer Hinweis an dieser Stelle: Die Folien sind auf Englisch, da auch unsere Seminararbeit auf Englisch ist, wir werden den Vortrag aber auf Deutsch halten.
+-->
+
 ---
 
 <!--
@@ -28,10 +33,8 @@ _header: Structure
 - Conclusion
 
 <!--
-- Hi, im Rahmen unserer Seminararbeit haben wir uns mit der Java Foreign Function & Memory API mit einem Schwerpunkt auf Lesen und Schreiben von strukturiertem Speicher auseinander gesetzt.
-- Kurzer Hinweis an dieser Stelle: Die Folien sind auf Englisch, da auch unsere Seminararbeit auf Englisch ist, wir werden den Vortrag aber auf Deutsch halten.
-- Ich verliere gleich 2-3 Sätze über unsere Methodik und 
-- Nachdem ich gleich 2-3 Sätze über unsere Methodik verlieren werde, werden wir uns gemeinsam anschauen, wie die FFM API Zugriff auf Foreign Memory ermöglicht, dafür werden wir uns im Speziellen MemorySegments und MemoryLayouts angucken, sowie unser Proof of Concept zum Thema betrachten.
+- Ich verliere gleich 2-3 Sätze über unsere Methodik und dann werden wir uns gemeinsam anschauen, wie die FFM API Zugriff auf Foreign Memory ermöglicht.
+- Dafür werden wir uns im Speziellen MemorySegments und MemoryLayouts angucken, sowie unser Proof of Concept zum Thema betrachten.
 - Aber erstmal ein wenig zu unserer Methodik;
   - Wir haben angefangen erstmal die JEPs, OpenJDK Dokumentation sowie die Oracle Dokumentation durchzulesen. 
   - Von da aus sind wir meist noch auf weitere Quellen gestoßen.
