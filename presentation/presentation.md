@@ -15,6 +15,10 @@ class:
 
 ---
 
+<!--
+_header: Structure
+-->
+
 # Structure
 
 - ### **Introduction**
@@ -24,6 +28,10 @@ class:
 - Conclusion
 
 ---
+
+<!--
+header: Introduction
+-->
 
 # Intro
 <!--
@@ -39,6 +47,10 @@ class:
 
 ---
 
+<!--
+_header: Structure
+-->
+
 # Structure
 
 - Introduction
@@ -53,6 +65,10 @@ class:
 
 ---
 
+<!--
+header: Memory Segments
+-->
+
 # Memory Segments
 
 Provide:
@@ -66,7 +82,7 @@ Provide:
 
 ---
 
-# Memory Segments
+# Memory Segments - Fat pointer
 
 Combination of (base) pointer & Metadata (length etc.)
 
@@ -85,8 +101,7 @@ Basically anything pointer
 
 ---
 
-# Memory Segments
-## Arena
+# Arena
 - Implementor of `SegmentAllocator`
 - Controls lifecycle of segments
   - Global / Automatic / Shared / Confined
@@ -107,8 +122,7 @@ Basically anything pointer
 
 ---
 
-# Memory Segments
-## Arena - Confined
+# Arena - Confined
 
 ```java
 try (Arena arena = Arena.ofConfined()) {
@@ -129,8 +143,7 @@ try (Arena arena = Arena.ofConfined()) {
 
 ---
 
-# Memory Segments
-## Arena - Shared
+# Arena - Shared
 
 ```java
 Arena arena = Arena.ofShared();
@@ -149,8 +162,7 @@ arena.close(); // explicit close; deallocates memory for all threads
 
 ---
 
-### Memory Segments
-#### Slices & Read-only
+# Slices & Read-only
 
 - MemorySegments can be sliced
 - MemorySegments can be made read-only
@@ -167,8 +179,7 @@ arena.close(); // explicit close; deallocates memory for all threads
 
 ---
 
-## Memory Segments
-## Slices & Read-only: Code example
+# Slices & Read-only: Code example
 
 ```java
 try (Arena a = Arena.ofConfined()) {
@@ -188,8 +199,7 @@ try (Arena a = Arena.ofConfined()) {
 
 ---
 
-# Memory Segments
-## Native interop
+# Native interop
 - On-heap segments cannot be passed to native code
 - MemorySegments wrap pointers returned from native code
 
@@ -201,8 +211,7 @@ try (Arena a = Arena.ofConfined()) {
 
 ---
 
-# Memory Segments
-## Native interop - Zero-length MemorySegments
+# Native interop - Zero-length MemorySegments
 - Have to be reinterpreted
 
 <!-- Example from our demo -->
@@ -220,8 +229,7 @@ cityNameSegment.reinterpret(Long.MAX_VALUE).getString(0)
 
 ---
 
-# Memory Segments
-## Native interop - Function pointers
+# Native interop - Function pointers
 - Zero-length MemorySegment
   - Can be passed to native code accepting function pointers
   - MethodHandle to call
@@ -232,6 +240,10 @@ cityNameSegment.reinterpret(Long.MAX_VALUE).getString(0)
 -->
 
 ---
+
+<!--
+_header: Structure
+-->
 
 # Structure
 
@@ -515,6 +527,10 @@ xHandle.set(memorySegment, 0, newValue)
 
 ---
 
+<!--
+_header: Structure
+-->
+
 # Structure
 
 - Introduction
@@ -525,6 +541,10 @@ xHandle.set(memorySegment, 0, newValue)
 
 ---
 
+<!--
+_header: Structure
+-->
+
 # Structure
 
 - Introduction
@@ -534,5 +554,9 @@ xHandle.set(memorySegment, 0, newValue)
 - ### **Conclusion**
 
 ---
+
+<!--
+header: Conclusion
+-->
 
 # Conclusion
