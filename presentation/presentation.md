@@ -6,6 +6,9 @@ title: "Reading and Writing (structured) Memory using Java's Foreign Function & 
 author: "Nikki Tschierske, Jakob Jungherr"
 footer: "Reading and Writing (structured) Memory using Java's Foreign Function & Memory API" # TODO
 paginate: true
+theme: default
+class:
+  - invert
 -->
 
 TITLE PAGE
