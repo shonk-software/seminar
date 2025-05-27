@@ -19,7 +19,7 @@ class:
 _header: Structure
 -->
 
-# Structure
+# Structure & Introduction
 
 - ### **Introduction**
 - MemorySegments
@@ -27,23 +27,16 @@ _header: Structure
 - Proof of Concept
 - Conclusion
 
----
-
 <!--
-header: Introduction
--->
-
-# Intro
-<!--
-- Hi, in unserer Seminararbeit haben wir uns mit dem Lesen und Schreiben von strukturiertem Speicher mithilfe der FFM API beschäftigt.
-- Wir erzählen euch heute ein bisschen über die Ergebnisse.
+- Hi, im Rahmen unserer Seminararbeit haben wir uns mit der Java Foreign Function & Memory API mit einem Schwerpunkt auf Lesen und Schreiben von strukturiertem Speicher auseinander gesetzt.
+- Kurzer Hinweis an dieser Stelle: Die Folien sind auf Englisch, da auch unsere Seminararbeit auf Englisch ist, wir werden den Vortrag aber auf Deutsch halten.
+- Ich verliere gleich 2-3 Sätze über unsere Methodik und 
+- Nachdem ich gleich 2-3 Sätze über unsere Methodik verlieren werde, werden wir uns gemeinsam anschauen, wie die FFM API Zugriff auf Foreign Memory ermöglicht, dafür werden wir uns im Speziellen MemorySegments und MemoryLayouts angucken, sowie unser Proof of Concept zum Thema betrachten.
 - Aber erstmal ein wenig zu unserer Methodik;
   - Wir haben angefangen erstmal die JEPs, OpenJDK Dokumentation sowie die Oracle Dokumentation durchzulesen. 
   - Von da aus sind wir meist noch auf weitere Quellen gestoßen.
-  - Einige Recherchegebiete haben sich auch beim basteln den POCs ergeben.
-- TODO: Braucht glaube ich eine bessere Überleitung
+  - Einige Recherchegebiete haben sich auch beim basteln des POCs ergeben.
 -->
-
 
 ---
 
@@ -60,7 +53,9 @@ _header: Structure
 - Conclusion
 
 <!--
-- Wir fangen dann gleich mit den MemorySegments an
+- Da alle Anwesenden zumindest einmal mit der FFM API gearbeitet haben, steigen wir direkt ins Thema ein.
+- Es ist allen bekannt, dass mit die FFM API das Lesen & Schreiben von foreign memory sowie das Aufrufen von nativen Funktionen ermöglicht.
+- Ein zentraler Baustein sind dabei MemorySegments.
 -->
 
 ---
