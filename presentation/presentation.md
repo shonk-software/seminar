@@ -124,7 +124,7 @@ Closing a shared arena is expensive as it involves synchronization
 - Slices sind neue MemorySegments die ihren zugrundeliegenden Speicher mit dem ursprünglichen Segment teilen
 - Diese neuen MemorySegments haben lediglich einen anderen base Pointer und Länge, der lifetime scope ändert sich nicht.
 - Segments können auch read-only markiert werden, ein Slice von diesem ist dann auch read-only, allerdings nur innerhalb der JVM.
-- (Optional warum)
+- (Optional; Warum?)
 -->
 
 ---
@@ -154,21 +154,9 @@ try (Arena a = Arena.ofConfined()) {
 - MemorySegments wrap pointers returned from native code
 
 <!--
-- On-heap segments cannot be passed to native code
-- MemorySegments are used to wrap pointers returned from native code
-  - You need to know what the functions return to properly work with the returned pointer / Segment
--->
-
----
-# Memory Segments
-## Native interop - Function pointers
-- Zero-length MemorySegment
-  - Can be passed to native code accepting function pointers
-  - MethodHandle to call
-
-<!--
-- MemorySegments also wrap function pointers so that they can be passed to native code.
-- They also wrap function pointers to native code, which can be turned into a callable MethodHandle.
+- On-heap MemorySegments können nicht an nativen Code übergeben werden
+- MemorySegments kapseln auch Pointer die von nativem Code zurückgegeben werden
+- Diese haben aber eine Länge von 0 da die Runtime nicht wissen kann wie groß der zugrundeliegende Speicher ist.
 -->
 
 ---
@@ -183,25 +171,28 @@ cityNameSegment.reinterpret(Long.MAX_VALUE).getString(0)
 ```
 
 <!--
-- As the length / size of pointers that get returned from native code is unknown (like the length of a string) they get wrapped in a MemorySegment of length 0.
-- They have to be reinterpreted into a new MemorySegment with a different size to be accessed, this is an unsafe operation as you could theoretically now try to access out of bounds memory which can crash the JVM or corrupt memory.
-- Reinterpret is one of the restricted methods, access to which has to be explicitely enabled.
+- Um dann mit diesen MemorySegments zu arbeiten, muss man diese erst re-interpretieren, also ein neues Segment mit dem gleichen Base Pointer aber anderer Länge erzeugen.
+- Bei einem NULL-Terminated String zum Beispiel kann man einfach rüberlaufen und den NULL-Terminator finden.
+- Bei einem Struct kennt man die Größe und Layout und kann daher einfacher re-interpretieren.
+- reinterpret ist eine Zugriffsbeschränkte Methode, der Zugriff muss beim Start der Anwendung explizit freigegeben werden.
+
 -->
 
 ---
 
-# Memory Segments - Summary
-- Unified type-safe abstraction over anything pointer-like
-- Spatial and temporal guarantees
-- Ergonomic handling via Arenas
-- Allows slicing and read-only access
+# Memory Segments
+## Native interop - Function pointers
+- Zero-length MemorySegment
+  - Can be passed to native code accepting function pointers
+  - MethodHandle to call
 
 <!--
-- All in all MemorySegments provide a unified type-safe abstraction over pointers while giving certain spatial and temporal guarantees.
-- They provide ergonomic handling via arenas, allowing the developers to make trade-offs between aspects like ease of use or speed
+- MemorySegments kapseln auch Funktionspointer, damit diese auch an nativen Code übergeben werden können
+- Um Funktionen dann aber aufzurufen muss das MemorySegment in eine MethodHandle umgewandelt werden
 -->
 
 ---
+
 
 # Memory Layouts
 <!--
