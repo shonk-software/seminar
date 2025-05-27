@@ -59,11 +59,14 @@ Basically anything pointer
 - MemorySegments können durch einen Implementierer des SegmentAllocator Interfaces allocated werden.
 - Arena ist dabei der Hauptimplementierer des Interfaces und kontrolliert den Geltungsbereich von MemorySegments die in ihr allocated sind.
 - Wenn eine Arena geschlossen wird, wird sämtlicher Speicher der in ihr allocated wurde, freigegeben.
-- Es gibt dabei verschiedene Arenen mit unterschiedlichen Eigenschaften:
-  - Global Arena, existiert über die gesamte Lebensdauer der Anwendung hinweg und ist von überall aus zugänglich. Speicher, der in ihr allocated wird, wird niemals freigegeben. Kann nicht explizit geschlossen werden. (wirft exception)
-  - Automatic Arena, lebt solange, bis der Garbage Collector sie oder MemorySegments die in ihr allocated wurden als erreichbar ansieht. Kann auch nicht explizit geschlossen werden.
+- Es gibt dabei verschiedene Arenas mit unterschiedlichen Eigenschaften:
+  - Global Arena: Existiert und ist offen für Lebensdauer Anwendung.
+    - Von überall accessible und kann nicht explizit geschlossen werden (Exception).
+    - Speicher wird während Runtime nicht freigegeben
+  - Automatic Arena, lebt solange, wie Garbage Collector sie & MemorySegments als erreichbar ansieht.
+    - Wie die Globale Arena nicht explizit geschlossen werden
   - Shared Arena ist eine simple Arena, auf die von mehreren Threads aus zugegriffen und geschlossen werden kann. 
-  - Auf die Confined Arena kann nur von einem Thread aus zugegriffen und geschlossen werden kann.
+  - Die Confined Arena hat einen Besitzer-Thread und Zugriff auf sie ist nur von diesem Thread aus möglich und sie kann nur von dort aus geschlossen werden.
 -->
 
 ---
@@ -73,9 +76,9 @@ Basically anything pointer
 
 ```java
 try (Arena arena = Arena.ofConfined()) {
-    MemorySegment seg = arena.allocate(4);
+    MemorySegment seg = arena.allocate(4); // Enough for an int
     seg.set(ValueLayout.JAVA_INT, 0, 42);
-    int value = seg.get(ValueLayout.JAVA_INT, 0);
+    int value = seg.get(ValueLayout.JAVA_INT, 0); // value = 42
 }
 ```
 
@@ -103,7 +106,6 @@ arena.close(); // explicit close; deallocates memory for all threads
 ```
 
 <!--
-Closing a shared arena is expensive as it involves synchronization 
 - Hier machen wir mit der shared Arena die gleichen Operationen wie eben, nur ohne den try-with-resources
 - try-with-resources kann hier natürlich aber auch benutzt werden.
 - Das schließen einer shared Arena involviert Synchronisationsoperationen und ist etwas aufwendiger bzw. teurer
@@ -130,7 +132,7 @@ Closing a shared arena is expensive as it involves synchronization
 ---
 
 ## Memory Segments
-## Slices / Views & Read-only: Code example
+## Slices & Read-only: Code example
 
 ```java
 try (Arena a = Arena.ofConfined()) {
@@ -138,6 +140,8 @@ try (Arena a = Arena.ofConfined()) {
     s.set(ValueLayout.JAVA_INT, 4, 20);           // Middle int, byte offset
     MemorySegment ro = s.asSlice(4, 4).asReadOnly();   // slice + RO
     System.out.println(ro.get(ValueLayout.JAVA_INT, 0)); // 20
+    s.set(ValueLayout.JAVA_INT, 4, 42);          // Set int to 42
+    System.out.println(ro.get(ValueLayout.JAVA_INT, 0)); // 42
     ro.set(ValueLayout.JAVA_INT, 0, 99);  // throws (read-only)
 }
 ```
