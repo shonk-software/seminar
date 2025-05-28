@@ -11,7 +11,10 @@ class:
   - invert
 -->
 
-# FFM: Reading & Writing Structured Memory
+# Java's Foreign Function & Memory API
+## Reading and Writing (structured) Memory
+
+by Jakob Jungherr & Nikki Tschierske
 
 <!--
 - Hi, im Rahmen unserer Seminararbeit haben wir uns mit der Java Foreign Function & Memory API mit einem Schwerpunkt auf Lesen und Schreiben von strukturiertem Speicher auseinander gesetzt.
